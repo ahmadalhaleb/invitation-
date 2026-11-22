@@ -66,6 +66,18 @@
       z-index: 12;
     }
 
+    /* Permanently Off-Screen Audio Engine (Never appears visually on screen) */
+    .yt-audio-hidden {
+      position: fixed;
+      top: -9999px;
+      left: -9999px;
+      width: 250px;
+      height: 250px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -10;
+    }
+
     /* Floating Music Toggle Button */
     .music-toggle-btn {
       position: fixed;
@@ -771,8 +783,10 @@
 </head>
 <body>
 
-  <!-- Universal Audio Player (No rigid MIME type so MP3/M4A/AAC/OGG all play on iOS & Android) -->
-  <audio id="wedding-music" loop preload="auto" playsinline webkit-playsinline></audio>
+  <!-- Permanently Hidden Off-Screen YouTube Audio Player (_2b7t0KebVo) -->
+  <div class="yt-audio-hidden" aria-hidden="true">
+    <div id="yt-music-player"></div>
+  </div>
 
   <!-- Floating Sound Toggle Button -->
   <button id="music-toggle" class="music-toggle-btn" type="button" aria-label="تشغيل أو إيقاف الموسيقى">
@@ -1120,31 +1134,26 @@
   </div>
 
   <script>
-    // 1. Smart Audio Loader & Synchronous Envelope Trigger (iOS / Android / Telegram / Desktop)
+    // 1. Completely Hidden Background YouTube Audio Engine (Zero Visual YouTube Logo)
+    const ytTag = document.createElement('script');
+    ytTag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(ytTag);
+
     const envelopeScreen = document.getElementById('envelope-screen');
     const envelopeTrigger = document.getElementById('envelope-trigger');
     const envelopeHint = document.getElementById('envelope-hint-trigger');
-    const weddingMusic = document.getElementById('wedding-music');
     const musicToggleBtn = document.getElementById('music-toggle');
     const musicIcon = document.getElementById('music-icon');
 
-    const audioCandidates = [
-      'music.mp3',
-      '../music.mp3',
-      'Music.mp3',
-      '../Music.mp3',
-      'music.m4a',
-      '../music.m4a',
-      'music.ogg',
-      '../music.ogg'
-    ];
-
-    let candidateIndex = 0;
-    let resolvedSrc = 'music.mp3';
+    let ytPlayer = null;
+    let ytReady = false;
+    let isMusicPlaying = false;
+    let pendingAutoPlay = false;
     let wasPlayingBeforeHide = false;
 
-    function updateMusicUI(isPlaying) {
-      if (isPlaying) {
+    function updateMusicUI(playing) {
+      isMusicPlaying = playing;
+      if (playing) {
         musicIcon.className = 'fa-solid fa-volume-high';
         musicToggleBtn.classList.add('playing');
       } else {
@@ -1153,57 +1162,70 @@
       }
     }
 
-    // Pre-detect the valid audio file path on page load so .play() fires synchronously on tap
-    async function resolveAudioSource() {
-      weddingMusic.src = audioCandidates[0];
-      for (let i = 0; i < audioCandidates.length; i++) {
-        try {
-          const res = await fetch(audioCandidates[i], { method: 'HEAD' });
-          if (res.ok) {
-            candidateIndex = i;
-            resolvedSrc = audioCandidates[i];
-            weddingMusic.src = resolvedSrc;
-            weddingMusic.load();
-            return;
-          }
-        } catch (e) {
-          // Ignore network/file protocol errors and keep default fallback
-        }
+    function startBackgroundMusic() {
+      pendingAutoPlay = true;
+      if (ytReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+        ytPlayer.unMute();
+        ytPlayer.setVolume(90);
+        ytPlayer.playVideo();
       }
     }
-    resolveAudioSource();
 
-    // Fallback sequence if decoder rejects one format
-    weddingMusic.addEventListener('error', () => {
-      candidateIndex++;
-      if (candidateIndex < audioCandidates.length) {
-        weddingMusic.src = audioCandidates[candidateIndex];
-        weddingMusic.load();
-        if (envelopeScreen.classList.contains('opened')) {
-          weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
-        }
-      } else {
-        updateMusicUI(false);
+    function pauseBackgroundMusic() {
+      pendingAutoPlay = false;
+      if (ytReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+        ytPlayer.pauseVideo();
       }
-    });
+      updateMusicUI(false);
+    }
 
-    weddingMusic.addEventListener('playing', () => updateMusicUI(true));
-    weddingMusic.addEventListener('pause', () => updateMusicUI(false));
+    window.onYouTubeIframeAPIReady = function () {
+      ytPlayer = new YT.Player('yt-music-player', {
+        width: '250',
+        height: '250',
+        videoId: '_2b7t0KebVo',
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          iv_load_policy: 3,
+          modestbranding: 1,
+          loop: 1,
+          playlist: '_2b7t0KebVo',
+          playsinline: 1,
+          rel: 0,
+          origin: window.location.origin
+        },
+        events: {
+          onReady: function (event) {
+            ytReady = true;
+            if (pendingAutoPlay) {
+              event.target.unMute();
+              event.target.setVolume(90);
+              event.target.playVideo();
+            }
+          },
+          onStateChange: function (event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+              updateMusicUI(true);
+            } else if (event.data === YT.PlayerState.PAUSED) {
+              updateMusicUI(false);
+            } else if (event.data === YT.PlayerState.ENDED) {
+              event.target.seekTo(0);
+              event.target.playVideo();
+            }
+          }
+        }
+      });
+    };
 
     function openEnvelope() {
       if (envelopeScreen.classList.contains('opened')) return;
       envelopeScreen.classList.add('opened');
       musicToggleBtn.classList.add('visible');
 
-      weddingMusic.volume = 0.9;
-      const playPromise = weddingMusic.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          updateMusicUI(true);
-        }).catch(() => {
-          updateMusicUI(false);
-        });
-      }
+      startBackgroundMusic();
 
       if (typeof confetti === 'function') {
         confetti({
@@ -1219,23 +1241,21 @@
     envelopeHint.addEventListener('click', openEnvelope);
 
     musicToggleBtn.addEventListener('click', () => {
-      if (weddingMusic.paused) {
-        weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+      if (isMusicPlaying) {
+        pauseBackgroundMusic();
       } else {
-        weddingMusic.pause();
-        updateMusicUI(false);
+        startBackgroundMusic();
       }
     });
 
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
-        wasPlayingBeforeHide = !weddingMusic.paused;
+        wasPlayingBeforeHide = isMusicPlaying;
         if (wasPlayingBeforeHide) {
-          weddingMusic.pause();
-          updateMusicUI(false);
+          pauseBackgroundMusic();
         }
       } else if (wasPlayingBeforeHide) {
-        weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+        startBackgroundMusic();
       }
     });
 
