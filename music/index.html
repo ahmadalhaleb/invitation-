@@ -66,27 +66,6 @@
       z-index: 12;
     }
 
-    /* YouTube Player: Valid 220x200px viewport off-screen so YouTube allows playback */
-    .yt-audio-wrapper {
-      position: fixed;
-      top: 70px;
-      left: -320px;
-      width: 220px;
-      height: 200px;
-      z-index: 105;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #0f291e;
-      border: 1.5px solid var(--gold-light);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-      transition: left 0.35s ease;
-    }
-
-    /* Slides into view only if iOS/Telegram blocks auto-play, then hides once playing */
-    .yt-audio-wrapper.fallback-visible {
-      left: 16px;
-    }
-
     /* Floating Music Toggle Button */
     .music-toggle-btn {
       position: fixed;
@@ -782,8 +761,6 @@
       .branch-bottom-left { width: 145px; height: 145px; }
       .floral-garland-closure { width: 250px; height: 42px; }
       .music-toggle-btn { top: 12px; left: 12px; width: 42px; height: 42px; font-size: 0.98rem; }
-      .yt-audio-wrapper { top: 62px; }
-      .yt-audio-wrapper.fallback-visible { left: 12px; }
     }
 
     @media (max-width: 360px) {
@@ -794,10 +771,8 @@
 </head>
 <body>
 
-  <!-- YouTube Player Container (220x200px off-screen) -->
-  <div id="yt-wrapper" class="yt-audio-wrapper">
-    <div id="yt-music-player"></div>
-  </div>
+  <!-- Universal Audio Player (No rigid MIME type so MP3/M4A/AAC/OGG all play on iOS & Android) -->
+  <audio id="wedding-music" loop preload="auto" playsinline webkit-playsinline></audio>
 
   <!-- Floating Sound Toggle Button -->
   <button id="music-toggle" class="music-toggle-btn" type="button" aria-label="تشغيل أو إيقاف الموسيقى">
@@ -1145,111 +1120,90 @@
   </div>
 
   <script>
-    // 1. Load YouTube IFrame API Dynamically
-    const ytTag = document.createElement('script');
-    ytTag.src = 'https://www.youtube.com/iframe_api';
-    document.head.appendChild(ytTag);
-
+    // 1. Smart Audio Loader & Synchronous Envelope Trigger (iOS / Android / Telegram / Desktop)
     const envelopeScreen = document.getElementById('envelope-screen');
     const envelopeTrigger = document.getElementById('envelope-trigger');
     const envelopeHint = document.getElementById('envelope-hint-trigger');
+    const weddingMusic = document.getElementById('wedding-music');
     const musicToggleBtn = document.getElementById('music-toggle');
     const musicIcon = document.getElementById('music-icon');
-    const ytWrapper = document.getElementById('yt-wrapper');
 
-    let ytPlayer = null;
-    let ytReady = false;
-    let isMusicPlaying = false;
-    let pendingAutoPlay = false;
+    const audioCandidates = [
+      'music.mp3',
+      '../music.mp3',
+      'Music.mp3',
+      '../Music.mp3',
+      'music.m4a',
+      '../music.m4a',
+      'music.ogg',
+      '../music.ogg'
+    ];
+
+    let candidateIndex = 0;
+    let resolvedSrc = 'music.mp3';
     let wasPlayingBeforeHide = false;
-    let fallbackTimer = null;
 
-    function updateMusicUI(playing) {
-      isMusicPlaying = playing;
-      if (playing) {
+    function updateMusicUI(isPlaying) {
+      if (isPlaying) {
         musicIcon.className = 'fa-solid fa-volume-high';
         musicToggleBtn.classList.add('playing');
-        ytWrapper.classList.remove('fallback-visible');
-        if (fallbackTimer) clearTimeout(fallbackTimer);
       } else {
         musicIcon.className = 'fa-solid fa-volume-xmark';
         musicToggleBtn.classList.remove('playing');
       }
     }
 
-    function scheduleMobileFallback() {
-      if (fallbackTimer) clearTimeout(fallbackTimer);
-      fallbackTimer = setTimeout(() => {
-        if (!isMusicPlaying) {
-          ytWrapper.classList.add('fallback-visible');
-        }
-      }, 1800);
-    }
-
-    function startYouTubeMusic() {
-      pendingAutoPlay = true;
-      if (ytReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
-        ytPlayer.unMute();
-        ytPlayer.setVolume(85);
-        ytPlayer.playVideo();
-      }
-      scheduleMobileFallback();
-    }
-
-    function pauseYouTubeMusic() {
-      pendingAutoPlay = false;
-      if (fallbackTimer) clearTimeout(fallbackTimer);
-      ytWrapper.classList.remove('fallback-visible');
-      if (ytReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-        ytPlayer.pauseVideo();
-      }
-      updateMusicUI(false);
-    }
-
-    window.onYouTubeIframeAPIReady = function () {
-      ytPlayer = new YT.Player('yt-music-player', {
-        width: '220',
-        height: '200',
-        videoId: '_2b7t0KebVo',
-        playerVars: {
-          autoplay: 0,
-          controls: 1,
-          loop: 1,
-          playlist: '_2b7t0KebVo',
-          playsinline: 1,
-          rel: 0,
-          origin: window.location.origin
-        },
-        events: {
-          onReady: function (event) {
-            ytReady = true;
-            if (pendingAutoPlay) {
-              event.target.unMute();
-              event.target.setVolume(85);
-              event.target.playVideo();
-              scheduleMobileFallback();
-            }
-          },
-          onStateChange: function (event) {
-            if (event.data === YT.PlayerState.PLAYING) {
-              updateMusicUI(true);
-            } else if (event.data === YT.PlayerState.PAUSED) {
-              updateMusicUI(false);
-            } else if (event.data === YT.PlayerState.ENDED) {
-              event.target.seekTo(0);
-              event.target.playVideo();
-            }
+    // Pre-detect the valid audio file path on page load so .play() fires synchronously on tap
+    async function resolveAudioSource() {
+      weddingMusic.src = audioCandidates[0];
+      for (let i = 0; i < audioCandidates.length; i++) {
+        try {
+          const res = await fetch(audioCandidates[i], { method: 'HEAD' });
+          if (res.ok) {
+            candidateIndex = i;
+            resolvedSrc = audioCandidates[i];
+            weddingMusic.src = resolvedSrc;
+            weddingMusic.load();
+            return;
           }
+        } catch (e) {
+          // Ignore network/file protocol errors and keep default fallback
         }
-      });
-    };
+      }
+    }
+    resolveAudioSource();
+
+    // Fallback sequence if decoder rejects one format
+    weddingMusic.addEventListener('error', () => {
+      candidateIndex++;
+      if (candidateIndex < audioCandidates.length) {
+        weddingMusic.src = audioCandidates[candidateIndex];
+        weddingMusic.load();
+        if (envelopeScreen.classList.contains('opened')) {
+          weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+        }
+      } else {
+        updateMusicUI(false);
+      }
+    });
+
+    weddingMusic.addEventListener('playing', () => updateMusicUI(true));
+    weddingMusic.addEventListener('pause', () => updateMusicUI(false));
 
     function openEnvelope() {
       if (envelopeScreen.classList.contains('opened')) return;
       envelopeScreen.classList.add('opened');
       musicToggleBtn.classList.add('visible');
 
-      startYouTubeMusic();
+      weddingMusic.volume = 0.9;
+      const playPromise = weddingMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          updateMusicUI(true);
+        }).catch(() => {
+          updateMusicUI(false);
+        });
+      }
 
       if (typeof confetti === 'function') {
         confetti({
@@ -1265,21 +1219,23 @@
     envelopeHint.addEventListener('click', openEnvelope);
 
     musicToggleBtn.addEventListener('click', () => {
-      if (isMusicPlaying) {
-        pauseYouTubeMusic();
+      if (weddingMusic.paused) {
+        weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
       } else {
-        startYouTubeMusic();
+        weddingMusic.pause();
+        updateMusicUI(false);
       }
     });
 
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
-        wasPlayingBeforeHide = isMusicPlaying;
+        wasPlayingBeforeHide = !weddingMusic.paused;
         if (wasPlayingBeforeHide) {
-          pauseYouTubeMusic();
+          weddingMusic.pause();
+          updateMusicUI(false);
         }
       } else if (wasPlayingBeforeHide) {
-        startYouTubeMusic();
+        weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
       }
     });
 
