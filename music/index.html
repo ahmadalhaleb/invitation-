@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>دعوة زفاف: السيد سليم &amp; السيدة يارا طلاس</title>
+
+  <meta property="og:title" content="دعوة زفاف السيد سليم &amp; السيدة يارا طلاس">
+  <meta property="og:description" content="تتشرف عائلة المرحوم محمد علي السالم بدعوتكم لحضور حفل زواج ابنه السيد سليم من السيدة يارا طلاس - الجمعة 25.12.2026">
+  <meta name="theme-color" content="#0f291e">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --olive-deep: #0f291e;
+      --olive-dark: #173d2e;
+      --olive-medium: #225943;
+      --pearl-white: #f4efe3;
+      --card-ivory: #fffdf8;
+      --box-warm: #f9f3e4;
+      --gold-primary: #c99b2e;
+      --gold-light: #e5c158;
+      --gold-dark: #8c6512;
+      --text-main: #152920;
+      --text-muted: #3b5247;
+      --border-gold: rgba(201, 155, 46, 0.55);
+      --wax-red: #7c1a20;
+      --wax-gradient: radial-gradient(circle at 35% 35%, #a81f28, #6e0f16 70%, #3d0508 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--pearl-white);
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(23, 61, 46, 0.09), transparent 52%),
+        radial-gradient(circle at 100% 100%, rgba(201, 155, 46, 0.1), transparent 52%),
+        linear-gradient(180deg, #f7f3e8 0%, #ede6d6 100%);
+      color: var(--text-main);
+      font-family: 'Cairo', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .ambient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 12;
+    }
+
+    /* Floating Music Toggle Button */
+    .music-toggle-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 100;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--olive-dark), var(--olive-deep));
+      border: 1.5px solid var(--gold-light);
+      color: #fff3cf;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(15, 41, 30, 0.35), 0 0 0 0 rgba(201, 155, 46, 0.45);
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.85);
+      transition: opacity 0.45s ease, transform 0.3s ease, visibility 0.45s ease, box-shadow 0.3s ease;
+    }
+
+    .music-toggle-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .music-toggle-btn.playing {
+      animation: musicPulse 2.2s infinite ease-out;
+    }
+
+    .music-toggle-btn:hover {
+      transform: scale(1.07);
+    }
+
+    @keyframes musicPulse {
+      0% { box-shadow: 0 6px 18px rgba(15, 41, 30, 0.35), 0 0 0 0 rgba(201, 155, 46, 0.5); }
+      70% { box-shadow: 0 6px 18px rgba(15, 41, 30, 0.35), 0 0 0 12px rgba(201, 155, 46, 0); }
+      100% { box-shadow: 0 6px 18px rgba(15, 41, 30, 0.35), 0 0 0 0 rgba(201, 155, 46, 0); }
+    }
+
+    /* Envelope Screen */
+    #envelope-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #183d2e 0%, #0a1b14 100%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.1s;
+    }
+
+    #envelope-screen.opened {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-outer-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 360px;
+      max-width: 90vw;
+      height: 245px;
+      background: linear-gradient(145deg, #173a2c, #0d241b);
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.68), 0 0 38px rgba(201, 155, 46, 0.24);
+      border: 1.5px solid rgba(229, 193, 88, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      overflow: hidden;
+    }
+
+    .envelope-wrapper:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.8), 0 0 48px rgba(229, 193, 88, 0.36);
+    }
+
+    .env-corner {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid rgba(229, 193, 88, 0.65);
+      pointer-events: none;
+    }
+    .env-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .env-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .env-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .env-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+    .env-silk-ribbon {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 36px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, rgba(229, 193, 88, 0.06), rgba(229, 193, 88, 0.26) 50%, rgba(229, 193, 88, 0.06));
+      border-top: 1px dashed rgba(229, 193, 88, 0.45);
+      border-bottom: 1px dashed rgba(229, 193, 88, 0.45);
+      pointer-events: none;
+    }
+
+    .env-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 125px;
+      background: linear-gradient(180deg, #1d4736, #122d22);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-bottom: 1.5px solid rgba(229, 193, 88, 0.5);
+      z-index: 2;
+    }
+
+    /* Wax Seal with Heartbeat Animation */
+    .wax-seal {
+      position: relative;
+      z-index: 5;
+      width: 86px;
+      height: 86px;
+      background: var(--wax-gradient);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffe8ab;
+      border: 1.5px solid rgba(229, 193, 88, 0.8);
+      animation: heartbeatPulse 1.9s ease-in-out infinite;
+    }
+
+    @keyframes heartbeatPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.5), 0 0 0 4px rgba(124, 26, 32, 0.45);
+      }
+      14% {
+        transform: scale(1.08);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255,255,255,0.5), 0 0 18px rgba(229, 193, 88, 0.55), 0 0 0 7px rgba(124, 26, 32, 0.35);
+      }
+      28% {
+        transform: scale(1);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.5), 0 0 0 4px rgba(124, 26, 32, 0.45);
+      }
+      42% {
+        transform: scale(1.13);
+        box-shadow: 0 12px 34px rgba(0,0,0,0.75), inset 0 2px 4px rgba(255,255,255,0.5), 0 0 24px rgba(229, 193, 88, 0.8), 0 0 0 10px rgba(124, 26, 32, 0.2);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.5), 0 0 0 4px rgba(124, 26, 32, 0.45);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.5), 0 0 0 4px rgba(124, 26, 32, 0.45);
+      }
+    }
+
+    .royal-crown-svg {
+      width: 26px;
+      height: 18px;
+      margin-bottom: 3px;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+    }
+
+    .monogram-text {
+      font-family: 'Cinzel', serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      direction: ltr !important;
+      color: #fff3cf;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.75);
+    }
+
+    .monogram-amp {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffd875;
+      margin-top: 1px;
+    }
+
+    .envelope-hint {
+      margin-top: 30px;
+      font-size: 1.15rem;
+      color: #fcefd2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      animation: pulseText 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.04); }
+    }
+
+    .main-wrapper {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 630px;
+      padding: 30px 18px 80px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card-royal {
+      width: 100%;
+      background: linear-gradient(180deg, #fffefb 0%, #fcf8ef 100%);
+      border: 1.5px solid rgba(201, 155, 46, 0.55);
+      border-radius: 28px;
+      padding: 108px 26px 54px 26px;
+      box-shadow: 0 18px 48px rgba(15, 41, 30, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card-royal::before {
+      content: '';
+      position: absolute;
+      inset: 9px;
+      border: 1.2px dashed rgba(201, 155, 46, 0.52);
+      border-radius: 21px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .botanical-branch {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      filter: drop-shadow(0 2px 4px rgba(15, 41, 30, 0.08));
+    }
+
+    .branch-top-right {
+      top: -6px;
+      right: -6px;
+      width: 210px;
+      height: 210px;
+    }
+
+    .branch-bottom-left {
+      bottom: -12px;
+      left: -12px;
+      width: 180px;
+      height: 180px;
+      transform: rotate(180deg);
+    }
+
+    .bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--olive-deep);
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .quran-ayah {
+      font-family: 'Amiri', serif;
+      font-size: 1.28rem;
+      line-height: 1.9;
+      color: var(--olive-dark);
+      max-width: 84%;
+      margin: 0 auto 20px auto;
+      position: relative;
+      z-index: 3;
+    }
+
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 20px auto;
+      width: 75%;
+    }
+
+    .gold-divider .line {
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    }
+
+    .gold-divider i {
+      color: var(--olive-medium);
+      font-size: 0.95rem;
+    }
+
+    .single-yatasharaf {
+      font-family: 'Amiri', serif;
+      font-size: 1.65rem;
+      color: var(--olive-deep);
+      font-weight: 700;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .single-host-box {
+      max-width: 380px;
+      margin: 0 auto 22px auto;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #fffdf8, var(--box-warm));
+      border-radius: 16px;
+      border: 1.2px solid rgba(201, 155, 46, 0.5);
+      box-shadow: 0 5px 16px rgba(15, 41, 30, 0.06);
+      position: relative;
+      z-index: 3;
+    }
+
+    .single-host-box .prefix {
+      font-size: 0.98rem;
+      color: var(--gold-dark);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .single-host-box .name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--olive-deep);
+      line-height: 1.45;
+    }
+
+    .invitation-intro {
+      font-size: 1.15rem;
+      color: var(--olive-deep);
+      margin: 18px auto;
+      line-height: 1.8;
+      max-width: 88%;
+      font-weight: 700;
+      position: relative;
+      z-index: 3;
+    }
+
+    .symmetric-couple-grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      gap: clamp(6px, 2vw, 14px);
+      margin: 24px auto;
+      padding: 26px 10px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8efd9 100%);
+      border-radius: 20px;
+      border: 1.6px solid var(--border-gold);
+      box-shadow: 0 8px 24px rgba(15, 41, 30, 0.08);
+      position: relative;
+      z-index: 3;
+    }
+
+    .person-name-unified {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.36rem, 5.2vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--olive-deep) !important;
+      text-shadow: 0 1px 2px rgba(201, 155, 46, 0.28);
+      white-space: nowrap;
+    }
+
+    .couple-waw {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.15rem, 4.1vw, 1.85rem);
+      color: var(--gold-dark);
+      font-weight: 700;
+      line-height: 1;
+      padding: 0 3px;
+      white-space: nowrap;
+    }
+
+    .hadith-quote {
+      font-family: 'Amiri', serif;
+      font-size: 1.35rem;
+      color: var(--olive-medium);
+      margin-top: 15px;
+      font-style: italic;
+      font-weight: 700;
+      position: relative;
+      z-index: 3;
+    }
+
+    .card-date-schedule {
+      margin-top: 24px;
+      padding: 18px 16px;
+      background: linear-gradient(180deg, #fbf6ea 0%, #f6eedb 100%);
+      border: 1.2px solid rgba(201, 155, 46, 0.5);
+      border-radius: 16px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .card-date-sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .card-date-text {
+      font-size: 1.14rem;
+      color: var(--olive-deep);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .card-time-text {
+      font-size: 0.98rem;
+      color: var(--gold-dark);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .btn-incard-calendar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 11px 16px;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1.2px solid var(--border-gold);
+      color: var(--olive-deep);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: 0 2px 8px rgba(15, 41, 30, 0.05);
+      transition: all 0.25s ease;
+    }
+
+    .btn-incard-calendar:hover {
+      background: #fffdf7;
+      border-color: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+
+    .countdown-in-card {
+      margin-top: 14px;
+      padding: 14px 10px;
+      background: #ffffff;
+      border: 1px solid rgba(201, 155, 46, 0.4);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .countdown-title {
+      font-size: 0.95rem;
+      color: var(--olive-deep);
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      direction: ltr;
+    }
+
+    .time-slot {
+      background: var(--box-warm);
+      border: 1px solid rgba(201, 155, 46, 0.45);
+      border-radius: 10px;
+      padding: 8px 4px;
+    }
+
+    .time-number {
+      font-size: 1.42rem;
+      font-weight: 800;
+      color: var(--olive-deep);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .time-label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .in-card-welcome-message {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 8px;
+      line-height: 1.65;
+      max-width: 82%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 3;
+    }
+
+    .details-card {
+      width: 100%;
+      margin-top: 24px;
+      background: linear-gradient(180deg, #fffefb 0%, #fcf8ef 100%);
+      border: 1.5px solid var(--border-gold);
+      border-radius: 22px;
+      padding: 24px 22px;
+      text-align: right;
+      box-shadow: 0 12px 32px rgba(15, 41, 30, 0.08);
+      position: relative;
+      z-index: 3;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .detail-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 12px;
+      background: rgba(23, 61, 46, 0.1);
+      border: 1.2px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--olive-deep);
+      font-size: 1.25rem;
+    }
+
+    .detail-content h4 {
+      font-size: 1.06rem;
+      color: var(--olive-deep);
+      margin-bottom: 4px;
+      font-weight: 800;
+    }
+
+    .detail-content p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .address-ltr {
+      direction: ltr;
+      text-align: right;
+      font-weight: 700;
+      color: var(--olive-deep) !important;
+      margin-top: 2px;
+    }
+
+    .btn-map-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin: 14px 0 16px 0;
+      padding: 13px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--olive-medium), var(--olive-deep));
+      border: 1.2px solid var(--gold-light);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.98rem;
+      box-shadow: 0 5px 16px rgba(15, 41, 30, 0.28);
+      transition: all 0.3s ease;
+    }
+
+    .btn-map-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 22px rgba(15, 41, 30, 0.38);
+    }
+
+    .hours-banner {
+      background: linear-gradient(135deg, rgba(23, 61, 46, 0.08), rgba(201, 155, 46, 0.08));
+      border: 1.2px solid rgba(23, 61, 46, 0.25);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hours-banner i {
+      font-size: 1.2rem;
+      color: var(--olive-medium);
+    }
+
+    .hours-banner span {
+      font-size: 0.95rem;
+      color: var(--olive-deep);
+      font-weight: 700;
+    }
+
+    .dinner-banner {
+      background: linear-gradient(135deg, rgba(201, 155, 46, 0.18), rgba(23, 61, 46, 0.05));
+      border: 1.2px solid rgba(201, 155, 46, 0.55);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dinner-banner i {
+      font-size: 1.2rem;
+      color: var(--gold-dark);
+    }
+
+    .dinner-banner span {
+      font-size: 0.95rem;
+      color: var(--olive-deep);
+      font-weight: 700;
+    }
+
+    .wedding-signature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 35px 0 15px 0;
+      position: relative;
+      z-index: 3;
+    }
+
+    .rings-icon-wrapper {
+      position: relative;
+      width: 82px;
+      height: 52px;
+      margin-bottom: 12px;
+    }
+
+    .ring-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 3px 6px rgba(201, 155, 46, 0.35));
+    }
+
+    .floral-garland-closure {
+      width: 290px;
+      height: 46px;
+      margin-bottom: 14px;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.06));
+    }
+
+    footer {
+      font-size: 0.96rem;
+      color: var(--olive-dark);
+      text-align: center;
+      font-weight: 800;
+      position: relative;
+      z-index: 3;
+    }
+
+    @media (max-width: 480px) {
+      .main-wrapper { padding: 24px 14px 70px 14px; }
+      .card-royal { padding: 98px 20px 50px 20px; }
+      .symmetric-couple-grid { padding: 20px 6px; gap: 6px; }
+      .single-host-box { max-width: 86%; }
+      .single-host-box .name { font-size: 1.22rem; }
+      .branch-top-right { width: 170px; height: 170px; }
+      .branch-bottom-left { width: 145px; height: 145px; }
+      .floral-garland-closure { width: 250px; height: 42px; }
+      .music-toggle-btn { top: 12px; left: 12px; width: 42px; height: 42px; font-size: 0.98rem; }
+    }
+
+    @media (max-width: 360px) {
+      .person-name-unified { font-size: 1.24rem; }
+      .couple-waw { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Wedding Audio (Checks both root folder & subfolder automatically) -->
+  <audio id="wedding-music" loop preload="auto" playsinline>
+    <source src="../music.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
+    <source src="../music.m4a" type="audio/mp4">
+    <source src="music.m4a" type="audio/mp4">
+    <source src="../music.ogg" type="audio/ogg">
+    <source src="music.ogg" type="audio/ogg">
+  </audio>
+
+  <!-- Floating Sound Toggle Button -->
+  <button id="music-toggle" class="music-toggle-btn" type="button" aria-label="تشغيل أو إيقاف الموسيقى">
+    <i class="fa-solid fa-volume-high" id="music-icon"></i>
+  </button>
+
+  <!-- Shared High-Precision Botanical SVG Symbols -->
+  <svg style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true">
+    <defs>
+      <radialGradient id="petalOuterGrad" cx="45%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="55%" stop-color="#f9f2e2"/>
+        <stop offset="100%" stop-color="#e7d9b9"/>
+      </radialGradient>
+      <radialGradient id="petalInnerGrad" cx="50%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#fffef9"/>
+        <stop offset="60%" stop-color="#f3e6ca"/>
+        <stop offset="100%" stop-color="#d8c08e"/>
+      </radialGradient>
+      <radialGradient id="flowerCoreGrad" cx="45%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#f4d87c"/>
+        <stop offset="48%" stop-color="#c99b2e"/>
+        <stop offset="100%" stop-color="#133325"/>
+      </radialGradient>
+      <linearGradient id="leafRichGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#4e8266"/>
+        <stop offset="55%" stop-color="#28543e"/>
+        <stop offset="100%" stop-color="#143324"/>
+      </linearGradient>
+      <linearGradient id="leafSoftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6ca082"/>
+        <stop offset="100%" stop-color="#2c5c44"/>
+      </linearGradient>
+
+      <g id="detailed-rose">
+        <g>
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+        <g transform="rotate(72)">
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+        <g transform="rotate(144)">
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+        <g transform="rotate(216)">
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+        <g transform="rotate(288)">
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+
+        <g transform="rotate(36)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <g transform="rotate(108)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <g transform="rotate(180)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <g transform="rotate(252)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <g transform="rotate(324)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+
+        <path d="M-7,-3 C-6,-10 5,-10 7,-3 C9,4 3,9 -4,7 C-8,5 -9,0 -5,-3 C-2,-5 3,-4 4,0 C4,3 1,5 -2,3" fill="none" stroke="#9e741c" stroke-width="0.7" stroke-linecap="round"/>
+
+        <g stroke="#133325" stroke-width="0.55" stroke-linecap="round">
+          <line x1="0" y1="0" x2="0" y2="-10.5"/>
+          <line x1="0" y1="0" x2="6.2" y2="-8.5"/>
+          <line x1="0" y1="0" x2="10" y2="-3.2"/>
+          <line x1="0" y1="0" x2="8.8" y2="5.5"/>
+          <line x1="0" y1="0" x2="3.5" y2="9.8"/>
+          <line x1="0" y1="0" x2="-3.5" y2="9.8"/>
+          <line x1="0" y1="0" x2="-8.8" y2="5.5"/>
+          <line x1="0" y1="0" x2="-10" y2="-3.2"/>
+          <line x1="0" y1="0" x2="-6.2" y2="-8.5"/>
+        </g>
+        <g fill="#e5be53" stroke="#133325" stroke-width="0.35">
+          <circle cx="0" cy="-10.8" r="1.2"/>
+          <circle cx="6.4" cy="-8.8" r="1.15"/>
+          <circle cx="10.2" cy="-3.3" r="1.2"/>
+          <circle cx="9" cy="5.7" r="1.15"/>
+          <circle cx="3.6" cy="10.1" r="1.15"/>
+          <circle cx="-3.6" cy="10.1" r="1.15"/>
+          <circle cx="-9" cy="5.7" r="1.15"/>
+          <circle cx="-10.2" cy="-3.3" r="1.2"/>
+          <circle cx="-6.4" cy="-8.8" r="1.15"/>
+        </g>
+
+        <circle cx="0" cy="0" r="5.2" fill="url(#flowerCoreGrad)" stroke="#102b1f" stroke-width="0.7"/>
+        <circle cx="-1" cy="-1" r="1.6" fill="#fff4c4" opacity="0.85"/>
+      </g>
+
+      <g id="detailed-leaf">
+        <path d="M0,0 C-7,-9 -8,-24 0,-34 C8,-24 7,-9 0,0 Z" fill="url(#leafRichGrad)" stroke="#112b1f" stroke-width="0.7"/>
+        <path d="M0,-1 C0,-12 0,-23 0,-32" fill="none" stroke="#c8decb" stroke-width="0.65" opacity="0.75"/>
+        <path d="M0,-9 L-4,-14 M0,-9 L4,-14 M0,-17 L-4.5,-22 M0,-17 L4.5,-22 M0,-24 L-2.8,-28 M0,-24 L2.8,-28" fill="none" stroke="#c8decb" stroke-width="0.45" opacity="0.6"/>
+      </g>
+
+      <g id="detailed-bud">
+        <path d="M0,0 C-5,-4 -6,-13 0,-18 C6,-13 5,-4 0,0 Z" fill="url(#petalOuterGrad)" stroke="#183d2e" stroke-width="0.7"/>
+        <path d="M-3,-4 C-1,-9 1,-13 2,-16" fill="none" stroke="#c99b2e" stroke-width="0.55"/>
+        <path d="M0,1 C-4,-2 -6,-7 -3,-11 C-2,-6 -1,-3 0,-1 C1,-3 2,-6 3,-11 C6,-7 4,-2 0,1 Z" fill="url(#leafSoftGrad)" stroke="#133325" stroke-width="0.5"/>
+      </g>
+    </defs>
+  </svg>
+
+  <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+
+  <!-- Envelope Screen -->
+  <div id="envelope-screen">
+    <div class="envelope-outer-container">
+      <div class="envelope-wrapper" id="envelope-trigger">
+        <div class="env-corner env-tl"></div>
+        <div class="env-corner env-tr"></div>
+        <div class="env-corner env-bl"></div>
+        <div class="env-corner env-br"></div>
+
+        <div class="env-silk-ribbon"></div>
+        <div class="env-flap"></div>
+
+        <div class="wax-seal">
+          <svg class="royal-crown-svg" viewBox="0 0 40 28">
+            <path d="M 6,24 Q 20,26 34,24 L 34,21 Q 20,23 6,21 Z" fill="#ffd875"/>
+            <circle cx="12" cy="22.5" r="1.1" fill="#fff"/>
+            <circle cx="20" cy="23.2" r="1.3" fill="#fff"/>
+            <circle cx="28" cy="22.5" r="1.1" fill="#fff"/>
+            <path d="M 6,21 L 8,11 Q 14,16 20,6 Q 26,16 32,11 L 34,21 Q 20,23 6,21 Z" fill="#ffe8ab" stroke="#b38728" stroke-width="0.8"/>
+            <path d="M 14,15 Q 20,9 26,15" fill="none" stroke="#d4af37" stroke-width="0.8"/>
+            <circle cx="8" cy="10" r="1.8" fill="#ffffff" stroke="#b38728" stroke-width="0.6"/>
+            <circle cx="20" cy="5" r="2.3" fill="#ffffff" stroke="#b38728" stroke-width="0.6"/>
+            <circle cx="32" cy="10" r="1.8" fill="#ffffff" stroke="#b38728" stroke-width="0.6"/>
+            <path d="M 20,1.2 L 20,3.6 M 18.8,2.4 L 21.2,2.4" stroke="#ffd875" stroke-width="0.8"/>
+          </svg>
+
+          <div class="monogram-text">
+            <span>S</span>
+            <span class="monogram-amp">&amp;</span>
+            <span>Y</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="envelope-hint" id="envelope-hint-trigger">
+      <i class="fa-solid fa-envelope-open-text"></i>
+      <span>فتح الدعوة الخاصة</span>
+    </div>
+  </div>
+
+  <div class="main-wrapper">
+    <main class="card-royal" id="main-card">
+
+      <!-- Top Right Detailed Botanical Rose Bouquet -->
+      <svg class="botanical-branch branch-top-right" viewBox="0 0 220 220">
+        <path d="M 220,0 Q 170,24 136,74 T 66,148" fill="none" stroke="#183d2e" stroke-width="1.9" stroke-linecap="round"/>
+        <path d="M 172,30 Q 130,48 106,92" fill="none" stroke="#183d2e" stroke-width="1.35" stroke-linecap="round"/>
+        <path d="M 196,12 Q 158,15 126,46" fill="none" stroke="#183d2e" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M 142,74 Q 108,82 78,124" fill="none" stroke="#183d2e" stroke-width="1.15" stroke-linecap="round"/>
+        <path d="M 162,48 Q 180,68 175,92" fill="none" stroke="#c99b2e" stroke-width="0.9" stroke-linecap="round"/>
+        <path d="M 118,92 Q 92,98 76,84" fill="none" stroke="#c99b2e" stroke-width="0.85" stroke-linecap="round"/>
+
+        <use href="#detailed-leaf" transform="translate(184, 24) rotate(-52) scale(0.95)"/>
+        <use href="#detailed-leaf" transform="translate(160, 44) rotate(-135) scale(0.88)"/>
+        <use href="#detailed-leaf" transform="translate(136, 74) rotate(-42) scale(1.0)"/>
+        <use href="#detailed-leaf" transform="translate(112, 98) rotate(-125) scale(0.82)"/>
+        <use href="#detailed-leaf" transform="translate(88, 126) rotate(-55) scale(0.78)"/>
+        <use href="#detailed-leaf" transform="translate(174, 62) rotate(138) scale(0.75)"/>
+
+        <use href="#detailed-bud" transform="translate(82, 134) rotate(-135) scale(0.95)"/>
+        <use href="#detailed-bud" transform="translate(128, 44) rotate(-65) scale(0.85)"/>
+        <use href="#detailed-bud" transform="translate(175, 92) rotate(172) scale(0.8)"/>
+
+        <circle cx="102" cy="64" r="2.2" fill="#e5be53" stroke="#183d2e" stroke-width="0.5"/>
+        <circle cx="94" cy="70" r="1.8" fill="#c99b2e" stroke="#183d2e" stroke-width="0.5"/>
+        <circle cx="76" cy="84" r="2.1" fill="#e5be53" stroke="#183d2e" stroke-width="0.5"/>
+        <circle cx="158" cy="96" r="2" fill="#e5be53" stroke="#183d2e" stroke-width="0.5"/>
+
+        <use href="#detailed-rose" transform="translate(154, 64) scale(1.06)"/>
+        <use href="#detailed-rose" transform="translate(112, 102) rotate(22) scale(0.88)"/>
+        <use href="#detailed-rose" transform="translate(182, 24) rotate(-18) scale(0.72)"/>
+      </svg>
+
+      <!-- Bottom Left Detailed Botanical Rose Bouquet -->
+      <svg class="botanical-branch branch-bottom-left" viewBox="0 0 220 220">
+        <path d="M 220,0 Q 170,24 136,74 T 74,142" fill="none" stroke="#183d2e" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 172,30 Q 130,48 108,88" fill="none" stroke="#183d2e" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M 160,50 Q 178,70 172,94" fill="none" stroke="#c99b2e" stroke-width="0.85" stroke-linecap="round"/>
+
+        <use href="#detailed-leaf" transform="translate(184, 24) rotate(-50) scale(0.9)"/>
+        <use href="#detailed-leaf" transform="translate(156, 48) rotate(-132) scale(0.84)"/>
+        <use href="#detailed-leaf" transform="translate(128, 80) rotate(-48) scale(0.88)"/>
+        <use href="#detailed-leaf" transform="translate(102, 110) rotate(-122) scale(0.74)"/>
+
+        <use href="#detailed-bud" transform="translate(88, 128) rotate(-132) scale(0.88)"/>
+        <use href="#detailed-bud" transform="translate(172, 94) rotate(172) scale(0.76)"/>
+
+        <circle cx="106" cy="70" r="2" fill="#e5be53" stroke="#183d2e" stroke-width="0.5"/>
+        <circle cx="98" cy="76" r="1.7" fill="#c99b2e" stroke="#183d2e" stroke-width="0.5"/>
+
+        <use href="#detailed-rose" transform="translate(154, 62) scale(1.0)"/>
+        <use href="#detailed-rose" transform="translate(116, 98) rotate(28) scale(0.74)"/>
+      </svg>
+
+      <div class="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+      <div class="quran-ayah">
+        ﴿وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً﴾
+      </div>
+
+      <div class="gold-divider">
+        <div class="line"></div>
+        <i class="fa-solid fa-leaf"></i>
+        <div class="line"></div>
+      </div>
+
+      <div class="single-yatasharaf">تَتَشَرَّف</div>
+
+      <div class="single-host-box">
+        <div class="prefix">عائلة المرحوم</div>
+        <div class="name">محمد علي السالم</div>
+      </div>
+
+      <p class="invitation-intro">
+        بدعوتكم لحضور حفل زواج ابنه
+      </p>
+
+      <div class="symmetric-couple-grid">
+        <div class="person-name-unified">السيد سليم</div>
+        <div class="couple-waw">من</div>
+        <div class="person-name-unified">السيدة يارا طلاس</div>
+      </div>
+
+      <div class="hadith-quote">
+        «بَارَكَ اللَّهُ لَهُمَا وَبَارَكَ عَلَيْهِمَا وَجَمَعَ بَيْنَهُمَا فِي خَيْرٍ»
+      </div>
+
+      <div class="card-date-schedule">
+        <div class="card-date-sub">وذلك بمشيئة الله وتوفيقه</div>
+        <div class="card-date-text">يوم الجمعة الموافق 25.12.2026</div>
+        <div class="card-time-text">الصالة مفتوحة من الساعة 13:00 حتى 22:00</div>
+
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%81+%D8%A7%D9%84%D8%B3%D9%8A%D8%AF+%D8%B3%D9%84%D9%8A%D9%85+%D9%88%D8%A7%D9%84%D8%B3%D9%8A%D8%AF%D8%A9+%D9%8A%D8%A7%D8%B1%D8%A7+%D8%B7%D9%84%D8%A7%D8%B3&dates=20261225T120000Z/20261225T210000Z&details=%D8%AA%D8%AA%D8%B4%D8%B1%D9%81+%D8%B9%D8%A7%D8%A6%D9%84%D8%A9+%D8%A7%D9%84%D9%85%D8%B1%D8%AD%D9%88%D9%85+%D9%85%D8%AD%D9%85%D8%AF+%D8%B9%D9%84%D9%8A+%D8%A7%D9%84%D8%B3%D8%A7%D9%84%D9%85+%D8%A8%D8%AF%D8%B9%D9%88%D8%AA%D9%83%D9%85+%D9%84%D8%AD%D8%B6%D9%88%D8%B1+%D8%AD%D9%81%D9%84+%D8%B2%D9%88%D8%A7%D8%AC+%D8%A7%D9%84%D8%B3%D9%8A%D8%AF+%D8%B3%D9%84%D9%8A%D9%85+%D9%88%D8%A7%D9%84%D8%B3%D9%8A%D8%AF%D8%A9+%D9%8A%D8%A7%D8%B1%D8%A7+%D8%B7%D9%84%D8%A7%D8%B3&location=Alte+Amtsstra%C3%9Fe+25%2C+33100+Paderborn-Neuenbeken%2C+Germany" target="_blank" rel="noopener noreferrer" class="btn-incard-calendar">
+          <i class="fa-regular fa-calendar-plus" style="color: var(--gold-dark);"></i>
+          <span>حفظ الموعد في تقويم الهاتف</span>
+        </a>
+
+        <div class="countdown-in-card">
+          <div class="countdown-title" id="countdown-heading">الوقت المتبقي لليلة الفرح المباركة</div>
+          <div class="timer-grid">
+            <div class="time-slot"><span class="time-number" id="t-days">00</span><span class="time-label">أيام</span></div>
+            <div class="time-slot"><span class="time-number" id="t-hours">00</span><span class="time-label">ساعات</span></div>
+            <div class="time-slot"><span class="time-number" id="t-mins">00</span><span class="time-label">دقائق</span></div>
+            <div class="time-slot"><span class="time-number" id="t-secs">00</span><span class="time-label">ثواني</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="in-card-welcome-message">
+        حضوركم تشريف لنا واكتمال لبهجة ليلتنا، فأهلاً وسهلاً بكم.
+      </p>
+    </main>
+
+    <!-- Details Card -->
+    <section class="details-card">
+      <div class="detail-item">
+        <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="detail-content">
+          <h4>المكان والعنوان</h4>
+          <p><strong>ألمانيا</strong></p>
+          <p class="address-ltr">Alte Amtsstraße 25, 33100 Paderborn-Neuenbeken</p>
+        </div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/7oH2h22hyFRCbnkv9?g_st=atm" target="_blank" rel="noopener noreferrer" class="btn-map-action">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span>فتح موقع الصالة على الخريطة (Google Maps)</span>
+      </a>
+
+      <div class="hours-banner">
+        <i class="fa-regular fa-clock"></i>
+        <span>الصالة مفتوحة من الساعة 13:00 ظهراً حتى 22:00 مساءً</span>
+      </div>
+
+      <div class="dinner-banner">
+        <i class="fa-solid fa-utensils"></i>
+        <span>ويُسعدنا تشريفكم لتناول طعام العشاء احتفاءً بهذه المناسبة المباركة</span>
+      </div>
+    </section>
+
+    <!-- Refined Wedding Signature -->
+    <div class="wedding-signature">
+      <div class="rings-icon-wrapper">
+        <svg class="ring-svg" viewBox="0 0 82 52">
+          <circle cx="28" cy="28" r="17" fill="none" stroke="#9e741c" stroke-width="4.8"/>
+          <circle cx="28" cy="28" r="17" fill="none" stroke="#fae89c" stroke-width="2.2"/>
+          <circle cx="28" cy="28" r="14.2" fill="none" stroke="#785611" stroke-width="0.8"/>
+
+          <path d="M 50,15 L 54,6 L 58,15 Z" fill="#c99b2e"/>
+          <polygon points="54,2 48,8 54,14 60,8" fill="#ffffff" stroke="#b8cde0" stroke-width="0.8"/>
+          <polygon points="54,2 51,8 54,14 57,8" fill="#eaf3fc" opacity="0.85"/>
+
+          <circle cx="54" cy="28" r="16" fill="none" stroke="#c99b2e" stroke-width="2.6"/>
+          <circle cx="54" cy="28" r="14.5" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="0.7"/>
+          <circle cx="43" cy="20" r="1" fill="#ffffff"/>
+          <circle cx="65" cy="20" r="1" fill="#ffffff"/>
+        </svg>
+      </div>
+
+      <svg class="floral-garland-closure" viewBox="0 0 300 48">
+        <path d="M 16,24 Q 84,14 150,24 T 284,24" fill="none" stroke="#c99b2e" stroke-width="1.35" stroke-dasharray="3,3"/>
+        <path d="M 48,24 Q 98,32 150,24 T 252,24" fill="none" stroke="#183d2e" stroke-width="1.3"/>
+
+        <use href="#detailed-leaf" transform="translate(124, 24) rotate(-68) scale(0.46)"/>
+        <use href="#detailed-leaf" transform="translate(176, 24) rotate(68) scale(0.46)"/>
+        <use href="#detailed-leaf" transform="translate(114, 26) rotate(-112) scale(0.42)"/>
+        <use href="#detailed-leaf" transform="translate(186, 26) rotate(112) scale(0.42)"/>
+        <use href="#detailed-leaf" transform="translate(64, 24) rotate(-75) scale(0.42)"/>
+        <use href="#detailed-leaf" transform="translate(236, 24) rotate(75) scale(0.42)"/>
+
+        <use href="#detailed-rose" transform="translate(150, 24) scale(0.56)"/>
+        <use href="#detailed-rose" transform="translate(216, 22) rotate(18) scale(0.43)"/>
+        <use href="#detailed-rose" transform="translate(84, 22) rotate(-18) scale(0.43)"/>
+
+        <use href="#detailed-bud" transform="translate(40, 24) rotate(-85) scale(0.62)"/>
+        <use href="#detailed-bud" transform="translate(260, 24) rotate(85) scale(0.62)"/>
+      </svg>
+
+      <footer>
+        دامت دياركم عامرة بالأفراح والمسرات
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // 1. Envelope Open, Music Playback & Confetti
+    const envelopeScreen = document.getElementById('envelope-screen');
+    const envelopeTrigger = document.getElementById('envelope-trigger');
+    const envelopeHint = document.getElementById('envelope-hint-trigger');
+    const weddingMusic = document.getElementById('wedding-music');
+    const musicToggleBtn = document.getElementById('music-toggle');
+    const musicIcon = document.getElementById('music-icon');
+    let wasPlayingBeforeHide = false;
+
+    function updateMusicUI(isPlaying) {
+      if (isPlaying) {
+        musicIcon.className = 'fa-solid fa-volume-high';
+        musicToggleBtn.classList.add('playing');
+      } else {
+        musicIcon.className = 'fa-solid fa-volume-xmark';
+        musicToggleBtn.classList.remove('playing');
+      }
+    }
+
+    function openEnvelope() {
+      if (envelopeScreen.classList.contains('opened')) return;
+      envelopeScreen.classList.add('opened');
+      musicToggleBtn.classList.add('visible');
+
+      weddingMusic.volume = 0.85;
+      const playPromise = weddingMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          updateMusicUI(true);
+        }).catch(() => {
+          updateMusicUI(false);
+        });
+      }
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 75,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#c99b2e', '#f2d675', '#173d2e', '#ffffff']
+        });
+      }
+    }
+
+    envelopeTrigger.addEventListener('click', openEnvelope);
+    envelopeHint.addEventListener('click', openEnvelope);
+
+    musicToggleBtn.addEventListener('click', () => {
+      if (weddingMusic.paused) {
+        weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+      } else {
+        weddingMusic.pause();
+        updateMusicUI(false);
+      }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        wasPlayingBeforeHide = !weddingMusic.paused;
+        if (wasPlayingBeforeHide) {
+          weddingMusic.pause();
+          updateMusicUI(false);
+        }
+      } else if (wasPlayingBeforeHide) {
+        weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+      }
+    });
+
+    // 2. Countdown Timer (25.12.2026 13:00 CET - Germany Time)
+    const weddingDate = new Date('2026-12-25T13:00:00+01:00').getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown-heading').textContent = 'ألف مبروك للعروسين!';
+        document.getElementById('t-days').textContent = '00';
+        document.getElementById('t-hours').textContent = '00';
+        document.getElementById('t-mins').textContent = '00';
+        document.getElementById('t-secs').textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('t-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('t-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('t-mins').textContent = String(mins).padStart(2, '0');
+      document.getElementById('t-secs').textContent = String(secs).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // 3. Bottom-to-Top Edge-Only Translucent Butterflies (Mobile & Desktop)
+    const canvas = document.getElementById('ambientCanvas');
+    const ctx = canvas.getContext('2d');
+    const mainCard = document.getElementById('main-card');
+    let viewW = window.innerWidth;
+    let viewH = window.innerHeight;
+    let butterflies = [];
+
+    const palettes = [
+      {
+        upper1: 'rgba(248, 214, 118, 0.88)',
+        upper2: 'rgba(219, 146, 36, 0.86)',
+        lower1: 'rgba(252, 226, 146, 0.85)',
+        lower2: 'rgba(206, 134, 28, 0.84)',
+        stroke: 'rgba(66, 46, 16, 0.82)',
+        body: '#3b2b12'
+      },
+      {
+        upper1: 'rgba(218, 228, 198, 0.88)',
+        upper2: 'rgba(146, 168, 122, 0.84)',
+        lower1: 'rgba(228, 236, 210, 0.85)',
+        lower2: 'rgba(134, 156, 110, 0.82)',
+        stroke: 'rgba(46, 66, 48, 0.82)',
+        body: '#2a3d2d'
+      },
+      {
+        upper1: 'rgba(196, 212, 226, 0.88)',
+        upper2: 'rgba(110, 134, 158, 0.85)',
+        lower1: 'rgba(210, 224, 236, 0.85)',
+        lower2: 'rgba(98, 122, 146, 0.83)',
+        stroke: 'rgba(42, 58, 74, 0.82)',
+        body: '#283847'
+      },
+      {
+        upper1: 'rgba(244, 232, 196, 0.88)',
+        upper2: 'rgba(194, 164, 102, 0.84)',
+        lower1: 'rgba(248, 239, 210, 0.85)',
+        lower2: 'rgba(178, 148, 88, 0.82)',
+        stroke: 'rgba(78, 62, 32, 0.8)',
+        body: '#42341b'
+      }
+    ];
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      viewW = window.innerWidth;
+      viewH = window.innerHeight;
+      canvas.width = Math.floor(viewW * dpr);
+      canvas.height = Math.floor(viewH * dpr);
+      canvas.style.width = viewW + 'px';
+      canvas.style.height = viewH + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function getSideCorridors() {
+      const rect = mainCard.getBoundingClientRect();
+      const outerSpace = rect.left;
+
+      if (outerSpace < 45) {
+        return {
+          leftMin: Math.max(12, rect.left - 2),
+          leftMax: Math.max(16, rect.left + 8),
+          rightMin: Math.min(viewW - 16, rect.right - 8),
+          rightMax: Math.min(viewW - 12, rect.right + 2)
+        };
+      }
+
+      const spread = Math.min(54, outerSpace - 18);
+      return {
+        leftMin: rect.left - spread,
+        leftMax: rect.left + 4,
+        rightMin: rect.right - 4,
+        rightMax: rect.right + spread
+      };
+    }
+
+    function createButterfly(side, index, totalPerSide, startRandomY) {
+      const palette = palettes[(index + (side === 'right' ? 2 : 0)) % palettes.length];
+      const spacing = (viewH + 120) / totalPerSide;
+      const y = startRandomY
+        ? index * spacing + Math.random() * (spacing * 0.55)
+        : viewH + 35 + Math.random() * 90;
+
+      return {
+        side,
+        laneRatio: Math.random(),
+        y,
+        size: 14 + Math.random() * 6,
+        vy: -0.42 - Math.random() * 0.42,
+        swayPhase: Math.random() * Math.PI * 2,
+        swaySpeed: 0.018 + Math.random() * 0.016,
+        swayAmp: 3 + Math.random() * 4,
+        wingPhase: Math.random() * Math.PI * 2,
+        wingSpeed: 0.095 + Math.random() * 0.055,
+        tilt: (Math.random() - 0.5) * 0.32,
+        palette
+      };
+    }
+
+    function initButterflies() {
+      butterflies = [];
+      const perSide = viewW < 600 ? 4 : 5;
+      for (let i = 0; i < perSide; i++) {
+        butterflies.push(createButterfly('left', i, perSide, true));
+        butterflies.push(createButterfly('right', i, perSide, true));
+      }
+    }
+
+    function drawWingHalf(s, dir, p) {
+      const gradU = ctx.createRadialGradient(dir * s * 0.3, -s * 0.25, s * 0.05, dir * s * 0.65, -s * 0.25, s * 0.95);
+      gradU.addColorStop(0, p.upper1);
+      gradU.addColorStop(1, p.upper2);
+
+      ctx.beginPath();
+      ctx.moveTo(dir * s * 0.08, -s * 0.04);
+      ctx.bezierCurveTo(dir * s * 0.35, -s * 0.95, dir * s * 1.28, -s * 0.85, dir * s * 1.15, -s * 0.14);
+      ctx.bezierCurveTo(dir * s * 1.06, s * 0.22, dir * s * 0.48, s * 0.14, dir * s * 0.08, s * 0.04);
+      ctx.closePath();
+      ctx.fillStyle = gradU;
+      ctx.fill();
+      ctx.lineWidth = 0.85;
+      ctx.strokeStyle = p.stroke;
+      ctx.stroke();
+
+      const gradL = ctx.createRadialGradient(dir * s * 0.25, s * 0.3, s * 0.05, dir * s * 0.5, s * 0.45, s * 0.78);
+      gradL.addColorStop(0, p.lower1);
+      gradL.addColorStop(1, p.lower2);
+
+      ctx.beginPath();
+      ctx.moveTo(dir * s * 0.08, s * 0.05);
+      ctx.bezierCurveTo(dir * s * 0.58, s * 0.1, dir * s * 0.92, s * 0.42, dir * s * 0.72, s * 0.8);
+      ctx.bezierCurveTo(dir * s * 0.54, s * 1.06, dir * s * 0.16, s * 0.82, dir * s * 0.06, s * 0.32);
+      ctx.closePath();
+      ctx.fillStyle = gradL;
+      ctx.fill();
+      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = p.stroke;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(dir * s * 0.12, -s * 0.02);
+      ctx.quadraticCurveTo(dir * s * 0.58, -s * 0.42, dir * s * 0.95, -s * 0.42);
+      ctx.moveTo(dir * s * 0.12, s * 0.02);
+      ctx.quadraticCurveTo(dir * s * 0.52, -s * 0.08, dir * s * 0.96, -s * 0.04);
+      ctx.moveTo(dir * s * 0.1, s * 0.14);
+      ctx.quadraticCurveTo(dir * s * 0.42, s * 0.44, dir * s * 0.54, s * 0.72);
+      ctx.lineWidth = 0.45;
+      ctx.strokeStyle = p.stroke;
+      ctx.globalAlpha = 0.45;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      ctx.beginPath();
+      ctx.ellipse(dir * s * 0.62, -s * 0.28, s * 0.24, s * 0.13, dir * -0.35, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.32)';
+      ctx.fill();
+    }
+
+    function drawButterfly(b, x) {
+      const flap = 0.18 + Math.abs(Math.sin(b.wingPhase)) * 0.82;
+      const s = b.size;
+      const p = b.palette;
+
+      ctx.save();
+      ctx.translate(x, b.y);
+      ctx.rotate(b.tilt + Math.sin(b.swayPhase) * 0.08);
+
+      ctx.save();
+      ctx.scale(flap, 1);
+      drawWingHalf(s, -1, p);
+      drawWingHalf(s, 1, p);
+      ctx.restore();
+
+      ctx.fillStyle = p.body;
+      ctx.beginPath();
+      ctx.arc(0, -s * 0.28, s * 0.09, 0, Math.PI * 2);
+      ctx.ellipse(0, s * 0.14, s * 0.08, s * 0.4, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(-s * 0.03, -s * 0.32);
+      ctx.quadraticCurveTo(-s * 0.18, -s * 0.66, -s * 0.32, -s * 0.7);
+      ctx.moveTo(s * 0.03, -s * 0.32);
+      ctx.quadraticCurveTo(s * 0.18, -s * 0.66, s * 0.32, -s * 0.7);
+      ctx.lineWidth = 0.65;
+      ctx.strokeStyle = p.body;
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    function animateButterflies() {
+      ctx.clearRect(0, 0, viewW, viewH);
+      const corridors = getSideCorridors();
+
+      for (const b of butterflies) {
+        b.y += b.vy;
+        b.wingPhase += b.wingSpeed;
+        b.swayPhase += b.swaySpeed;
+
+        if (b.y < -45) {
+          b.y = viewH + 35 + Math.random() * 60;
+          b.laneRatio = Math.random();
+          b.palette = palettes[Math.floor(Math.random() * palettes.length)];
+        }
+
+        let baseX, minX, maxX;
+        if (b.side === 'left') {
+          minX = corridors.leftMin;
+          maxX = corridors.leftMax;
+          baseX = minX + b.laneRatio * (maxX - minX);
+        } else {
+          minX = corridors.rightMin;
+          maxX = corridors.rightMax;
+          baseX = minX + b.laneRatio * (maxX - minX);
+        }
+
+        const x = Math.max(minX, Math.min(maxX, baseX + Math.sin(b.swayPhase) * b.swayAmp));
+        drawButterfly(b, x);
+      }
+
+      requestAnimationFrame(animateButterflies);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initButterflies();
+    });
+
+    resizeCanvas();
+    initButterflies();
+    animateButterflies();
+  </script>
+</body>
+</html>
