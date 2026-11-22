@@ -66,17 +66,25 @@
       z-index: 12;
     }
 
-    /* Hidden YouTube Audio Frame (1x1px off-visual so mobile browsers allow playback) */
-    .yt-audio-container {
+    /* YouTube Player: Valid 220x200px viewport off-screen so YouTube allows playback */
+    .yt-audio-wrapper {
       position: fixed;
-      bottom: 0;
-      right: 0;
-      width: 1px;
-      height: 1px;
-      opacity: 0.01;
+      top: 70px;
+      left: -320px;
+      width: 220px;
+      height: 200px;
+      z-index: 105;
+      border-radius: 14px;
       overflow: hidden;
-      pointer-events: none;
-      z-index: -1;
+      background: #0f291e;
+      border: 1.5px solid var(--gold-light);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      transition: left 0.35s ease;
+    }
+
+    /* Slides into view only if iOS/Telegram blocks auto-play, then hides once playing */
+    .yt-audio-wrapper.fallback-visible {
+      left: 16px;
     }
 
     /* Floating Music Toggle Button */
@@ -84,7 +92,7 @@
       position: fixed;
       top: 16px;
       left: 16px;
-      z-index: 100;
+      z-index: 110;
       width: 46px;
       height: 46px;
       border-radius: 50%;
@@ -774,6 +782,8 @@
       .branch-bottom-left { width: 145px; height: 145px; }
       .floral-garland-closure { width: 250px; height: 42px; }
       .music-toggle-btn { top: 12px; left: 12px; width: 42px; height: 42px; font-size: 0.98rem; }
+      .yt-audio-wrapper { top: 62px; }
+      .yt-audio-wrapper.fallback-visible { left: 12px; }
     }
 
     @media (max-width: 360px) {
@@ -784,17 +794,9 @@
 </head>
 <body>
 
-  <!-- Embedded YouTube Audio Player (_2b7t0KebVo) -->
-  <div class="yt-audio-container" aria-hidden="true">
-    <iframe
-      id="yt-music-player"
-      width="10"
-      height="10"
-      src="https://www.youtube.com/embed/_2b7t0KebVo?enablejsapi=1&loop=1&playlist=_2b7t0KebVo&controls=0&playsinline=1&rel=0"
-      title="موسيقى الزفاف"
-      frameborder="0"
-      allow="autoplay; encrypted-media">
-    </iframe>
+  <!-- YouTube Player Container (220x200px off-screen) -->
+  <div id="yt-wrapper" class="yt-audio-wrapper">
+    <div id="yt-music-player"></div>
   </div>
 
   <!-- Floating Sound Toggle Button -->
@@ -1142,41 +1144,46 @@
     </div>
   </div>
 
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    // 1. YouTube IFrame API & Envelope Playback Controller
+    // 1. Load YouTube IFrame API Dynamically
+    const ytTag = document.createElement('script');
+    ytTag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(ytTag);
+
     const envelopeScreen = document.getElementById('envelope-screen');
     const envelopeTrigger = document.getElementById('envelope-trigger');
     const envelopeHint = document.getElementById('envelope-hint-trigger');
     const musicToggleBtn = document.getElementById('music-toggle');
     const musicIcon = document.getElementById('music-icon');
-    const ytIframe = document.getElementById('yt-music-player');
+    const ytWrapper = document.getElementById('yt-wrapper');
 
     let ytPlayer = null;
     let ytReady = false;
     let isMusicPlaying = false;
     let pendingAutoPlay = false;
     let wasPlayingBeforeHide = false;
+    let fallbackTimer = null;
 
     function updateMusicUI(playing) {
       isMusicPlaying = playing;
       if (playing) {
         musicIcon.className = 'fa-solid fa-volume-high';
         musicToggleBtn.classList.add('playing');
+        ytWrapper.classList.remove('fallback-visible');
+        if (fallbackTimer) clearTimeout(fallbackTimer);
       } else {
         musicIcon.className = 'fa-solid fa-volume-xmark';
         musicToggleBtn.classList.remove('playing');
       }
     }
 
-    function sendYTCommand(func, args) {
-      if (ytIframe && ytIframe.contentWindow) {
-        ytIframe.contentWindow.postMessage(JSON.stringify({
-          event: 'command',
-          func: func,
-          args: args || []
-        }), '*');
-      }
+    function scheduleMobileFallback() {
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+      fallbackTimer = setTimeout(() => {
+        if (!isMusicPlaying) {
+          ytWrapper.classList.add('fallback-visible');
+        }
+      }, 1800);
     }
 
     function startYouTubeMusic() {
@@ -1185,26 +1192,34 @@
         ytPlayer.unMute();
         ytPlayer.setVolume(85);
         ytPlayer.playVideo();
-      } else {
-        sendYTCommand('unMute');
-        sendYTCommand('setVolume', [85]);
-        sendYTCommand('playVideo');
       }
-      updateMusicUI(true);
+      scheduleMobileFallback();
     }
 
     function pauseYouTubeMusic() {
       pendingAutoPlay = false;
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+      ytWrapper.classList.remove('fallback-visible');
       if (ytReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
         ytPlayer.pauseVideo();
-      } else {
-        sendYTCommand('pauseVideo');
       }
       updateMusicUI(false);
     }
 
     window.onYouTubeIframeAPIReady = function () {
       ytPlayer = new YT.Player('yt-music-player', {
+        width: '220',
+        height: '200',
+        videoId: '_2b7t0KebVo',
+        playerVars: {
+          autoplay: 0,
+          controls: 1,
+          loop: 1,
+          playlist: '_2b7t0KebVo',
+          playsinline: 1,
+          rel: 0,
+          origin: window.location.origin
+        },
         events: {
           onReady: function (event) {
             ytReady = true;
@@ -1212,7 +1227,7 @@
               event.target.unMute();
               event.target.setVolume(85);
               event.target.playVideo();
-              updateMusicUI(true);
+              scheduleMobileFallback();
             }
           },
           onStateChange: function (event) {
