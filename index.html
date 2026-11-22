@@ -7,7 +7,7 @@
 
   <meta property="og:title" content="دعوة زفاف السيد سليم &amp; السيدة يارا طلاس">
   <meta property="og:description" content="تتشرف عائلة المرحوم محمد علي السالم بدعوتكم لحضور حفل زواج ابنه السيد سليم من السيدة يارا طلاس - الجمعة 25.12.2026">
-  <meta name="theme-color" content="#132a21">
+  <meta name="theme-color" content="#0f291e">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,18 +17,20 @@
 
   <style>
     :root {
-      --olive-deep: #132a21;
-      --olive-dark: #1b382d;
-      --olive-medium: #2a5242;
-      --pearl-white: #faf9f6;
-      --card-ivory: #ffffff;
-      --gold-primary: #d4af37;
-      --gold-dark: #9e7a22;
-      --text-main: #1d2c25;
-      --text-muted: #52665d;
-      --border-gold: rgba(212, 175, 55, 0.4);
+      --olive-deep: #0f291e;
+      --olive-dark: #173d2e;
+      --olive-medium: #225943;
+      --pearl-white: #f4efe3;
+      --card-ivory: #fffdf8;
+      --box-warm: #f9f3e4;
+      --gold-primary: #c99b2e;
+      --gold-light: #e5c158;
+      --gold-dark: #8c6512;
+      --text-main: #152920;
+      --text-muted: #3b5247;
+      --border-gold: rgba(201, 155, 46, 0.55);
       --wax-red: #7c1a20;
-      --wax-gradient: radial-gradient(circle at 35% 35%, #9e1f26, #6b1016 70%, #3d0508 100%);
+      --wax-gradient: radial-gradient(circle at 35% 35%, #a81f28, #6e0f16 70%, #3d0508 100%);
     }
 
     * {
@@ -41,9 +43,9 @@
     body {
       background-color: var(--pearl-white);
       background-image:
-        radial-gradient(circle at 50% 0%, rgba(27, 56, 45, 0.05), transparent 50%),
-        radial-gradient(circle at 100% 100%, rgba(212, 175, 55, 0.05), transparent 50%),
-        linear-gradient(180deg, #fcfbf8 0%, #f5f2eb 100%);
+        radial-gradient(circle at 50% 0%, rgba(23, 61, 46, 0.09), transparent 52%),
+        radial-gradient(circle at 100% 100%, rgba(201, 155, 46, 0.1), transparent 52%),
+        linear-gradient(180deg, #f7f3e8 0%, #ede6d6 100%);
       color: var(--text-main);
       font-family: 'Cairo', sans-serif;
       min-height: 100vh;
@@ -68,7 +70,7 @@
     #envelope-screen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #1b3d30 0%, #0d1e17 100%);
+      background: radial-gradient(circle at center, #183d2e 0%, #0a1b14 100%);
       z-index: 9999;
       display: flex;
       flex-direction: column;
@@ -96,10 +98,10 @@
       width: 360px;
       max-width: 90vw;
       height: 245px;
-      background: linear-gradient(145deg, #18382c, #10271f);
+      background: linear-gradient(145deg, #173a2c, #0d241b);
       border-radius: 16px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(212, 175, 55, 0.18);
-      border: 1.5px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.68), 0 0 38px rgba(201, 155, 46, 0.24);
+      border: 1.5px solid rgba(229, 193, 88, 0.55);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -110,14 +112,14 @@
 
     .envelope-wrapper:hover {
       transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.8), 0 0 45px rgba(212, 175, 55, 0.3);
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.8), 0 0 48px rgba(229, 193, 88, 0.36);
     }
 
     .env-corner {
       position: absolute;
       width: 30px;
       height: 30px;
-      border: 1.5px solid rgba(212, 175, 55, 0.55);
+      border: 1.5px solid rgba(229, 193, 88, 0.65);
       pointer-events: none;
     }
     .env-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
@@ -132,9 +134,9 @@
       right: 0;
       height: 36px;
       transform: translateY(-50%);
-      background: linear-gradient(90deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.22) 50%, rgba(212, 175, 55, 0.05));
-      border-top: 1px dashed rgba(212, 175, 55, 0.35);
-      border-bottom: 1px dashed rgba(212, 175, 55, 0.35);
+      background: linear-gradient(90deg, rgba(229, 193, 88, 0.06), rgba(229, 193, 88, 0.26) 50%, rgba(229, 193, 88, 0.06));
+      border-top: 1px dashed rgba(229, 193, 88, 0.45);
+      border-bottom: 1px dashed rgba(229, 193, 88, 0.45);
       pointer-events: none;
     }
 
@@ -144,9 +146,9 @@
       left: 0;
       right: 0;
       height: 125px;
-      background: linear-gradient(180deg, #1d4234, #142f25);
+      background: linear-gradient(180deg, #1d4736, #122d22);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
-      border-bottom: 1.5px solid rgba(212, 175, 55, 0.45);
+      border-bottom: 1.5px solid rgba(229, 193, 88, 0.5);
       z-index: 2;
     }
 
@@ -163,7 +165,7 @@
       align-items: center;
       justify-content: center;
       color: #ffe8ab;
-      border: 1.5px solid rgba(212, 175, 55, 0.75);
+      border: 1.5px solid rgba(229, 193, 88, 0.8);
       animation: heartbeatPulse 1.9s ease-in-out infinite;
     }
 
@@ -174,7 +176,7 @@
       }
       14% {
         transform: scale(1.08);
-        box-shadow: 0 10px 28px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255,255,255,0.5), 0 0 18px rgba(212, 175, 55, 0.5), 0 0 0 7px rgba(124, 26, 32, 0.35);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255,255,255,0.5), 0 0 18px rgba(229, 193, 88, 0.55), 0 0 0 7px rgba(124, 26, 32, 0.35);
       }
       28% {
         transform: scale(1);
@@ -182,7 +184,7 @@
       }
       42% {
         transform: scale(1.13);
-        box-shadow: 0 12px 34px rgba(0,0,0,0.75), inset 0 2px 4px rgba(255,255,255,0.5), 0 0 24px rgba(212, 175, 55, 0.75), 0 0 0 10px rgba(124, 26, 32, 0.2);
+        box-shadow: 0 12px 34px rgba(0,0,0,0.75), inset 0 2px 4px rgba(255,255,255,0.5), 0 0 24px rgba(229, 193, 88, 0.8), 0 0 0 10px rgba(124, 26, 32, 0.2);
       }
       70% {
         transform: scale(1);
@@ -210,7 +212,7 @@
       align-items: center;
       gap: 3px;
       direction: ltr !important;
-      color: #fff1c7;
+      color: #fff3cf;
       text-shadow: 0 1px 3px rgba(0,0,0,0.75);
     }
 
@@ -251,11 +253,11 @@
 
     .card-royal {
       width: 100%;
-      background: var(--card-ivory);
-      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: linear-gradient(180deg, #fffefb 0%, #fcf8ef 100%);
+      border: 1.5px solid rgba(201, 155, 46, 0.55);
       border-radius: 28px;
       padding: 105px 20px 45px 20px;
-      box-shadow: 0 15px 45px rgba(27, 56, 45, 0.08);
+      box-shadow: 0 18px 48px rgba(15, 41, 30, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
       position: relative;
       text-align: center;
       overflow: hidden;
@@ -264,9 +266,9 @@
     .card-royal::before {
       content: '';
       position: absolute;
-      inset: 8px;
-      border: 1px dashed rgba(212, 175, 55, 0.35);
-      border-radius: 22px;
+      inset: 9px;
+      border: 1.2px dashed rgba(201, 155, 46, 0.52);
+      border-radius: 21px;
       pointer-events: none;
       z-index: 2;
     }
@@ -292,9 +294,96 @@
       transform: rotate(180deg);
     }
 
+    /* Edge Butterflies - strictly on card edges, never over text */
+    .edge-butterfly {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      filter: drop-shadow(0 2px 4px rgba(15, 41, 30, 0.18));
+    }
+
+    .bf-top-left {
+      top: 22px;
+      left: 20px;
+      width: 38px;
+      height: 32px;
+      transform: rotate(-18deg);
+      animation: bfFloatA 5.5s ease-in-out infinite;
+    }
+
+    .bf-top-right-edge {
+      top: 122px;
+      right: 12px;
+      width: 28px;
+      height: 24px;
+      transform: rotate(22deg);
+      animation: bfFloatB 6.2s ease-in-out infinite;
+    }
+
+    .bf-bottom-right {
+      bottom: 20px;
+      right: 20px;
+      width: 36px;
+      height: 30px;
+      transform: rotate(15deg);
+      animation: bfFloatA 6s ease-in-out infinite reverse;
+    }
+
+    .bf-bottom-left-edge {
+      bottom: 108px;
+      left: 12px;
+      width: 26px;
+      height: 22px;
+      transform: rotate(-24deg);
+      animation: bfFloatB 5.8s ease-in-out infinite;
+    }
+
+    .edge-butterfly .wing-l {
+      transform-origin: 24px 20px;
+      animation: wingFlapL 1.8s ease-in-out infinite;
+    }
+
+    .edge-butterfly .wing-r {
+      transform-origin: 24px 20px;
+      animation: wingFlapR 1.8s ease-in-out infinite;
+    }
+
+    .bf-top-right-edge .wing-l,
+    .bf-top-right-edge .wing-r {
+      animation-duration: 1.5s;
+      animation-delay: 0.4s;
+    }
+
+    .bf-bottom-right .wing-l,
+    .bf-bottom-right .wing-r {
+      animation-duration: 2.1s;
+      animation-delay: 0.7s;
+    }
+
+    @keyframes wingFlapL {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(0.42); }
+    }
+
+    @keyframes wingFlapR {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(0.42); }
+    }
+
+    @keyframes bfFloatA {
+      0%, 100% { transform: translateY(0px) rotate(-16deg); }
+      50% { transform: translateY(-5px) rotate(-10deg); }
+    }
+
+    @keyframes bfFloatB {
+      0%, 100% { transform: translateY(0px) rotate(18deg); }
+      50% { transform: translateY(-4px) rotate(25deg); }
+    }
+
     .bismillah {
       font-family: 'Amiri', serif;
-      font-size: 1.65rem;
+      font-size: 1.7rem;
+      font-weight: 700;
       color: var(--olive-deep);
       margin-bottom: 12px;
       position: relative;
@@ -303,9 +392,9 @@
 
     .quran-ayah {
       font-family: 'Amiri', serif;
-      font-size: 1.25rem;
+      font-size: 1.28rem;
       line-height: 1.9;
-      color: var(--olive-deep);
+      color: var(--olive-dark);
       max-width: 86%;
       margin: 0 auto 20px auto;
       position: relative;
@@ -323,18 +412,18 @@
 
     .gold-divider .line {
       flex: 1;
-      height: 1px;
+      height: 1.5px;
       background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
     }
 
     .gold-divider i {
       color: var(--olive-medium);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
 
     .single-yatasharaf {
       font-family: 'Amiri', serif;
-      font-size: 1.6rem;
+      font-size: 1.65rem;
       color: var(--olive-deep);
       font-weight: 700;
       margin-bottom: 14px;
@@ -344,12 +433,12 @@
 
     .single-host-box {
       max-width: 420px;
-      margin: 0 auto 24px auto;
+      margin: 0 auto 22px auto;
       padding: 16px 20px;
-      background: #faf8f3;
+      background: linear-gradient(135deg, #fffdf8, var(--box-warm));
       border-radius: 16px;
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      box-shadow: 0 4px 14px rgba(27, 56, 45, 0.04);
+      border: 1.2px solid rgba(201, 155, 46, 0.5);
+      box-shadow: 0 5px 16px rgba(15, 41, 30, 0.06);
       position: relative;
       z-index: 3;
     }
@@ -362,7 +451,7 @@
     }
 
     .single-host-box .name {
-      font-size: 1.38rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: var(--olive-deep);
       line-height: 1.45;
@@ -374,44 +463,46 @@
       margin: 18px auto;
       line-height: 1.8;
       max-width: 90%;
-      font-weight: 600;
+      font-weight: 700;
       position: relative;
       z-index: 3;
     }
 
+    /* Always side-by-side in one horizontal line */
     .symmetric-couple-grid {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
       justify-content: center;
-      gap: 10px 14px;
+      gap: clamp(6px, 2vw, 14px);
       margin: 22px 0;
-      padding: 24px 14px;
-      background: linear-gradient(135deg, #ffffff, #faf6ec);
+      padding: 22px 10px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8efd9 100%);
       border-radius: 20px;
-      border: 1.5px solid var(--border-gold);
-      box-shadow: 0 6px 20px rgba(27, 56, 45, 0.05);
+      border: 1.6px solid var(--border-gold);
+      box-shadow: 0 8px 22px rgba(15, 41, 30, 0.07);
       position: relative;
       z-index: 3;
     }
 
     .person-name-unified {
       font-family: 'Amiri', serif;
-      font-size: 2.05rem;
+      font-size: clamp(1.06rem, 4.2vw, 1.95rem);
       font-weight: 800;
       line-height: 1.3;
-      color: #1a382b !important;
-      text-shadow: 0 1px 2px rgba(212, 175, 55, 0.2);
+      color: var(--olive-deep) !important;
+      text-shadow: 0 1px 2px rgba(201, 155, 46, 0.25);
       white-space: nowrap;
     }
 
     .couple-waw {
       font-family: 'Amiri', serif;
-      font-size: 1.85rem;
+      font-size: clamp(0.95rem, 3.4vw, 1.55rem);
       color: var(--gold-dark);
       font-weight: 700;
       line-height: 1;
-      padding: 0 4px;
+      padding: 0 2px;
+      white-space: nowrap;
     }
 
     .hadith-quote {
@@ -420,6 +511,7 @@
       color: var(--olive-medium);
       margin-top: 15px;
       font-style: italic;
+      font-weight: 700;
       position: relative;
       z-index: 3;
     }
@@ -427,22 +519,22 @@
     .card-date-schedule {
       margin-top: 24px;
       padding: 18px 16px;
-      background: #faf8f3;
-      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: linear-gradient(180deg, #fbf6ea 0%, #f6eedb 100%);
+      border: 1.2px solid rgba(201, 155, 46, 0.5);
       border-radius: 16px;
       position: relative;
       z-index: 3;
     }
 
     .card-date-sub {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 4px;
     }
 
     .card-date-text {
-      font-size: 1.12rem;
+      font-size: 1.14rem;
       color: var(--olive-deep);
       font-weight: 800;
       margin-bottom: 6px;
@@ -451,7 +543,7 @@
     .card-time-text {
       font-size: 0.98rem;
       color: var(--gold-dark);
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 14px;
     }
 
@@ -464,17 +556,18 @@
       padding: 11px 16px;
       border-radius: 10px;
       background: #ffffff;
-      border: 1px solid var(--border-gold);
+      border: 1.2px solid var(--border-gold);
       color: var(--olive-deep);
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
+      box-shadow: 0 2px 8px rgba(15, 41, 30, 0.05);
       transition: all 0.25s ease;
     }
 
     .btn-incard-calendar:hover {
-      background: #fdfcf9;
-      border-color: var(--gold-primary);
+      background: #fffdf7;
+      border-color: var(--gold-dark);
       transform: translateY(-1px);
     }
 
@@ -482,7 +575,7 @@
       margin-top: 14px;
       padding: 14px 10px;
       background: #ffffff;
-      border: 1px solid rgba(212, 175, 55, 0.25);
+      border: 1px solid rgba(201, 155, 46, 0.4);
       border-radius: 14px;
       text-align: center;
     }
@@ -491,7 +584,7 @@
       font-size: 0.95rem;
       color: var(--olive-deep);
       margin-bottom: 10px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .timer-grid {
@@ -502,14 +595,14 @@
     }
 
     .time-slot {
-      background: #faf8f3;
-      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: var(--box-warm);
+      border: 1px solid rgba(201, 155, 46, 0.45);
       border-radius: 10px;
       padding: 8px 4px;
     }
 
     .time-number {
-      font-size: 1.4rem;
+      font-size: 1.42rem;
       font-weight: 800;
       color: var(--olive-deep);
       display: block;
@@ -517,17 +610,18 @@
     }
 
     .time-label {
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .in-card-welcome-message {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
+      font-weight: 600;
       margin-top: 24px;
       margin-bottom: 8px;
-      line-height: 1.6;
+      line-height: 1.65;
       position: relative;
       z-index: 3;
     }
@@ -535,12 +629,12 @@
     .details-card {
       width: 100%;
       margin-top: 24px;
-      background: var(--card-ivory);
+      background: linear-gradient(180deg, #fffefb 0%, #fcf8ef 100%);
       border: 1.5px solid var(--border-gold);
       border-radius: 22px;
       padding: 24px 20px;
       text-align: right;
-      box-shadow: 0 10px 30px rgba(27, 56, 45, 0.05);
+      box-shadow: 0 12px 32px rgba(15, 41, 30, 0.08);
       position: relative;
       z-index: 3;
     }
@@ -557,8 +651,8 @@
       height: 44px;
       min-width: 44px;
       border-radius: 12px;
-      background: rgba(27, 56, 45, 0.08);
-      border: 1px solid var(--border-gold);
+      background: rgba(23, 61, 46, 0.1);
+      border: 1.2px solid var(--border-gold);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -567,10 +661,10 @@
     }
 
     .detail-content h4 {
-      font-size: 1.05rem;
+      font-size: 1.06rem;
       color: var(--olive-deep);
       margin-bottom: 4px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .detail-content p {
@@ -596,26 +690,27 @@
       margin: 14px 0 16px 0;
       padding: 13px 20px;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--olive-dark), var(--olive-deep));
-      border: 1px solid var(--gold-primary);
+      background: linear-gradient(135deg, var(--olive-medium), var(--olive-deep));
+      border: 1.2px solid var(--gold-light);
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       font-size: 0.98rem;
-      box-shadow: 0 4px 15px rgba(27, 56, 45, 0.25);
+      box-shadow: 0 5px 16px rgba(15, 41, 30, 0.28);
       transition: all 0.3s ease;
     }
 
     .btn-map-action:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(27, 56, 45, 0.35);
+      box-shadow: 0 7px 22px rgba(15, 41, 30, 0.38);
     }
 
     .hours-banner {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(27, 56, 45, 0.04));
-      border: 1px solid rgba(212, 175, 55, 0.4);
+      background: linear-gradient(135deg, rgba(23, 61, 46, 0.08), rgba(201, 155, 46, 0.08));
+      border: 1.2px solid rgba(23, 61, 46, 0.25);
       border-radius: 14px;
       padding: 12px 14px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -623,10 +718,31 @@
 
     .hours-banner i {
       font-size: 1.2rem;
-      color: var(--gold-dark);
+      color: var(--olive-medium);
     }
 
     .hours-banner span {
+      font-size: 0.95rem;
+      color: var(--olive-deep);
+      font-weight: 700;
+    }
+
+    .dinner-banner {
+      background: linear-gradient(135deg, rgba(201, 155, 46, 0.18), rgba(23, 61, 46, 0.05));
+      border: 1.2px solid rgba(201, 155, 46, 0.55);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dinner-banner i {
+      font-size: 1.2rem;
+      color: var(--gold-dark);
+    }
+
+    .dinner-banner span {
       font-size: 0.95rem;
       color: var(--olive-deep);
       font-weight: 700;
@@ -653,31 +769,36 @@
     .ring-svg {
       width: 100%;
       height: 100%;
-      filter: drop-shadow(0 3px 6px rgba(212, 175, 55, 0.3));
+      filter: drop-shadow(0 3px 6px rgba(201, 155, 46, 0.35));
     }
 
     .floral-garland-closure {
       width: 270px;
       height: 38px;
       margin-bottom: 14px;
-      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.05));
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.06));
     }
 
     footer {
-      font-size: 0.95rem;
-      color: var(--olive-medium);
+      font-size: 0.96rem;
+      color: var(--olive-dark);
       text-align: center;
-      font-weight: 700;
+      font-weight: 800;
       position: relative;
       z-index: 3;
     }
 
     @media (max-width: 480px) {
-      .person-name-unified { font-size: 1.65rem; }
-      .single-host-box .name { font-size: 1.2rem; }
+      .main-wrapper { padding: 24px 12px 70px 12px; }
+      .card-royal { padding: 96px 14px 40px 14px; }
+      .symmetric-couple-grid { padding: 18px 8px; }
+      .single-host-box .name { font-size: 1.22rem; }
       .branch-top-right { width: 155px; height: 155px; }
       .branch-bottom-left { width: 135px; height: 135px; }
-      .card-royal { padding-top: 96px; }
+      .bf-top-left { top: 18px; left: 16px; width: 32px; height: 27px; }
+      .bf-top-right-edge { top: 108px; right: 8px; width: 22px; height: 19px; }
+      .bf-bottom-right { bottom: 16px; right: 16px; width: 30px; height: 25px; }
+      .bf-bottom-left-edge { bottom: 96px; left: 8px; width: 22px; height: 19px; }
       .floral-garland-closure { width: 230px; height: 34px; }
     }
   </style>
@@ -728,72 +849,134 @@
   </div>
 
   <div class="main-wrapper">
-    <main class="card-royal">
+    <main class="card-royal" id="main-card">
 
       <!-- Top Right Bouquet -->
       <svg class="botanical-branch branch-top-right" viewBox="0 0 210 210">
-        <path d="M 210,0 Q 165,22 135,70 T 70,140" fill="none" stroke="#254233" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M 165,30 Q 125,45 105,85" fill="none" stroke="#254233" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M 190,12 Q 155,14 125,42" fill="none" stroke="#254233" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M 140,70 Q 105,75 75,115" fill="none" stroke="#254233" stroke-width="1" stroke-linecap="round"/>
+        <path d="M 210,0 Q 165,22 135,70 T 70,140" fill="none" stroke="#183d2e" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 165,30 Q 125,45 105,85" fill="none" stroke="#183d2e" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M 190,12 Q 155,14 125,42" fill="none" stroke="#183d2e" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M 140,70 Q 105,75 75,115" fill="none" stroke="#183d2e" stroke-width="1.1" stroke-linecap="round"/>
 
-        <path d="M 180,24 Q 155,14 172,-2 Z" fill="#527964" opacity="0.75"/>
-        <path d="M 152,48 Q 128,34 148,18 Z" fill="#3b5d4b" opacity="0.8"/>
-        <path d="M 118,85 Q 98,72 118,55 Z" fill="#2d4a3b" opacity="0.75"/>
-        <path d="M 88,122 Q 68,110 88,95 Z" fill="#527964" opacity="0.7"/>
+        <path d="M 180,24 Q 155,14 172,-2 Z" fill="#3a6b52" opacity="0.85"/>
+        <path d="M 152,48 Q 128,34 148,18 Z" fill="#27523d" opacity="0.88"/>
+        <path d="M 118,85 Q 98,72 118,55 Z" fill="#1e4432" opacity="0.85"/>
+        <path d="M 88,122 Q 68,110 88,95 Z" fill="#3a6b52" opacity="0.8"/>
 
         <g transform="translate(150, 65)">
-          <circle cx="0" cy="-11" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="10.5" cy="-3.5" r="9" fill="#f4faf6" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="6.5" cy="9" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="-6.5" cy="9" r="9" fill="#f4faf6" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="-10.5" cy="-3.5" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="0" cy="0" r="4.5" fill="#132a21"/>
-          <circle cx="0" cy="0" r="2.2" fill="#d4af37"/>
-          <circle cx="0" cy="-6" r="1" fill="#132a21"/>
-          <circle cx="5.5" cy="-2" r="1" fill="#132a21"/>
-          <circle cx="3.5" cy="5" r="1" fill="#132a21"/>
-          <circle cx="-3.5" cy="5" r="1" fill="#132a21"/>
-          <circle cx="-5.5" cy="-2" r="1" fill="#132a21"/>
+          <circle cx="0" cy="-11" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="10.5" cy="-3.5" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="6.5" cy="9" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="-6.5" cy="9" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="-10.5" cy="-3.5" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="0" cy="0" r="4.5" fill="#0f291e"/>
+          <circle cx="0" cy="0" r="2.4" fill="#d4a437"/>
+          <circle cx="0" cy="-6" r="1" fill="#0f291e"/>
+          <circle cx="5.5" cy="-2" r="1" fill="#0f291e"/>
+          <circle cx="3.5" cy="5" r="1" fill="#0f291e"/>
+          <circle cx="-3.5" cy="5" r="1" fill="#0f291e"/>
+          <circle cx="-5.5" cy="-2" r="1" fill="#0f291e"/>
         </g>
 
         <g transform="translate(108, 102) scale(0.92)">
-          <circle cx="0" cy="-11" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="10.5" cy="-3.5" r="9" fill="#f4faf6" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="6.5" cy="9" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="-6.5" cy="9" r="9" fill="#f4faf6" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="-10.5" cy="-3.5" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="0" cy="0" r="4.5" fill="#132a21"/>
-          <circle cx="0" cy="0" r="2.2" fill="#d4af37"/>
+          <circle cx="0" cy="-11" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="10.5" cy="-3.5" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="6.5" cy="9" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="-6.5" cy="9" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="-10.5" cy="-3.5" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="0" cy="0" r="4.5" fill="#0f291e"/>
+          <circle cx="0" cy="0" r="2.4" fill="#d4a437"/>
         </g>
 
         <g transform="translate(175, 24) scale(0.72)">
-          <circle cx="0" cy="-10" r="8" fill="#edf4f0" stroke="#254233" stroke-width="0.8"/>
-          <circle cx="9.5" cy="-3" r="8" fill="#f4faf6" stroke="#254233" stroke-width="0.8"/>
-          <circle cx="6" cy="8" r="8" fill="#edf4f0" stroke="#254233" stroke-width="0.8"/>
-          <circle cx="-6" cy="8" r="8" fill="#f4faf6" stroke="#254233" stroke-width="0.8"/>
-          <circle cx="-9.5" cy="-3" r="8" fill="#edf4f0" stroke="#254233" stroke-width="0.8"/>
-          <circle cx="0" cy="0" r="4" fill="#132a21"/>
-          <circle cx="0" cy="0" r="2" fill="#d4af37"/>
+          <circle cx="0" cy="-10" r="8" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9"/>
+          <circle cx="9.5" cy="-3" r="8" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9"/>
+          <circle cx="6" cy="8" r="8" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9"/>
+          <circle cx="-6" cy="8" r="8" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9"/>
+          <circle cx="-9.5" cy="-3" r="8" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9"/>
+          <circle cx="0" cy="0" r="4" fill="#0f291e"/>
+          <circle cx="0" cy="0" r="2.2" fill="#d4a437"/>
         </g>
       </svg>
 
       <!-- Bottom Left Bouquet -->
       <svg class="botanical-branch branch-bottom-left" viewBox="0 0 210 210">
-        <path d="M 210,0 Q 165,22 135,70 T 70,140" fill="none" stroke="#254233" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M 165,30 Q 125,45 105,85" fill="none" stroke="#254233" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M 180,24 Q 155,14 172,-2 Z" fill="#527964" opacity="0.75"/>
-        <path d="M 152,48 Q 128,34 148,18 Z" fill="#3b5d4b" opacity="0.8"/>
+        <path d="M 210,0 Q 165,22 135,70 T 70,140" fill="none" stroke="#183d2e" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 165,30 Q 125,45 105,85" fill="none" stroke="#183d2e" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M 180,24 Q 155,14 172,-2 Z" fill="#3a6b52" opacity="0.85"/>
+        <path d="M 152,48 Q 128,34 148,18 Z" fill="#27523d" opacity="0.88"/>
 
         <g transform="translate(150, 65)">
-          <circle cx="0" cy="-11" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="10.5" cy="-3.5" r="9" fill="#f4faf6" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="6.5" cy="9" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="-6.5" cy="9" r="9" fill="#f4faf6" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="-10.5" cy="-3.5" r="9" fill="#edf4f0" stroke="#254233" stroke-width="0.8" opacity="0.95"/>
-          <circle cx="0" cy="0" r="4.5" fill="#132a21"/>
-          <circle cx="0" cy="0" r="2.2" fill="#d4af37"/>
+          <circle cx="0" cy="-11" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="10.5" cy="-3.5" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="6.5" cy="9" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="-6.5" cy="9" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="-10.5" cy="-3.5" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
+          <circle cx="0" cy="0" r="4.5" fill="#0f291e"/>
+          <circle cx="0" cy="0" r="2.4" fill="#d4a437"/>
         </g>
+      </svg>
+
+      <!-- Corner & Edge Butterflies (strictly along card borders, away from text) -->
+      <svg class="edge-butterfly bf-top-left" viewBox="0 0 48 40">
+        <defs>
+          <linearGradient id="goldWing1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f2d675"/>
+            <stop offset="60%" stop-color="#c99b2e"/>
+            <stop offset="100%" stop-color="#8c6512"/>
+          </linearGradient>
+        </defs>
+        <g class="wing-l">
+          <path d="M23,19 C16,5 3,6 5,18 C6,24 15,24 23,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
+          <path d="M23,21 C14,23 8,31 14,35 C19,37 22,29 23,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
+          <circle cx="13" cy="15" r="1.6" fill="#fffdf8" opacity="0.85"/>
+        </g>
+        <g class="wing-r">
+          <path d="M25,19 C32,5 45,6 43,18 C42,24 33,24 25,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
+          <path d="M25,21 C34,23 40,31 34,35 C29,37 26,29 25,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
+          <circle cx="35" cy="15" r="1.6" fill="#fffdf8" opacity="0.85"/>
+        </g>
+        <ellipse cx="24" cy="21" rx="1.5" ry="6.5" fill="#173d2e"/>
+        <path d="M23,15 Q20,9 18,10 M25,15 Q28,9 30,10" fill="none" stroke="#173d2e" stroke-width="0.8" stroke-linecap="round"/>
+      </svg>
+
+      <svg class="edge-butterfly bf-top-right-edge" viewBox="0 0 48 40">
+        <g class="wing-l">
+          <path d="M23,19 C16,5 3,6 5,18 C6,24 15,24 23,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
+          <path d="M23,21 C14,23 8,31 14,35 C19,37 22,29 23,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
+        </g>
+        <g class="wing-r">
+          <path d="M25,19 C32,5 45,6 43,18 C42,24 33,24 25,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
+          <path d="M25,21 C34,23 40,31 34,35 C29,37 26,29 25,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
+        </g>
+        <ellipse cx="24" cy="21" rx="1.5" ry="6.5" fill="#173d2e"/>
+      </svg>
+
+      <svg class="edge-butterfly bf-bottom-right" viewBox="0 0 48 40">
+        <g class="wing-l">
+          <path d="M23,19 C16,5 3,6 5,18 C6,24 15,24 23,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
+          <path d="M23,21 C14,23 8,31 14,35 C19,37 22,29 23,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
+          <circle cx="13" cy="15" r="1.6" fill="#fffdf8" opacity="0.85"/>
+        </g>
+        <g class="wing-r">
+          <path d="M25,19 C32,5 45,6 43,18 C42,24 33,24 25,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
+          <path d="M25,21 C34,23 40,31 34,35 C29,37 26,29 25,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
+          <circle cx="35" cy="15" r="1.6" fill="#fffdf8" opacity="0.85"/>
+        </g>
+        <ellipse cx="24" cy="21" rx="1.5" ry="6.5" fill="#173d2e"/>
+        <path d="M23,15 Q20,9 18,10 M25,15 Q28,9 30,10" fill="none" stroke="#173d2e" stroke-width="0.8" stroke-linecap="round"/>
+      </svg>
+
+      <svg class="edge-butterfly bf-bottom-left-edge" viewBox="0 0 48 40">
+        <g class="wing-l">
+          <path d="M23,19 C16,5 3,6 5,18 C6,24 15,24 23,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
+          <path d="M23,21 C14,23 8,31 14,35 C19,37 22,29 23,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
+        </g>
+        <g class="wing-r">
+          <path d="M25,19 C32,5 45,6 43,18 C42,24 33,24 25,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
+          <path d="M25,21 C34,23 40,31 34,35 C29,37 26,29 25,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
+        </g>
+        <ellipse cx="24" cy="21" rx="1.5" ry="6.5" fill="#173d2e"/>
       </svg>
 
       <div class="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
@@ -819,7 +1002,7 @@
         بدعوتكم لحضور حفل زواج ابنه
       </p>
 
-      <!-- Couple Section -->
+      <!-- Couple Section (Strictly Side-by-Side) -->
       <div class="symmetric-couple-grid">
         <div class="person-name-unified">السيد سليم</div>
         <div class="couple-waw">من</div>
@@ -879,21 +1062,27 @@
         <i class="fa-regular fa-clock"></i>
         <span>الصالة مفتوحة من الساعة 13:00 ظهراً حتى 22:00 مساءً</span>
       </div>
+
+      <!-- Dinner Banner -->
+      <div class="dinner-banner">
+        <i class="fa-solid fa-utensils"></i>
+        <span>ويُسعدنا تشريفكم لتناول طعام العشاء احتفاءً بهذه المناسبة المباركة</span>
+      </div>
     </section>
 
     <!-- Refined Wedding Signature -->
     <div class="wedding-signature">
       <div class="rings-icon-wrapper">
         <svg class="ring-svg" viewBox="0 0 82 52">
-          <circle cx="28" cy="28" r="17" fill="none" stroke="#b38728" stroke-width="4.8"/>
-          <circle cx="28" cy="28" r="17" fill="none" stroke="#fbf5b7" stroke-width="2.2"/>
-          <circle cx="28" cy="28" r="14.2" fill="none" stroke="#8c6d23" stroke-width="0.8"/>
+          <circle cx="28" cy="28" r="17" fill="none" stroke="#9e741c" stroke-width="4.8"/>
+          <circle cx="28" cy="28" r="17" fill="none" stroke="#fae89c" stroke-width="2.2"/>
+          <circle cx="28" cy="28" r="14.2" fill="none" stroke="#785611" stroke-width="0.8"/>
 
-          <path d="M 50,15 L 54,6 L 58,15 Z" fill="#d4af37"/>
-          <polygon points="54,2 48,8 54,14 60,8" fill="#ffffff" stroke="#c5d8e8" stroke-width="0.8"/>
-          <polygon points="54,2 51,8 54,14 57,8" fill="#f0f7ff" opacity="0.8"/>
+          <path d="M 50,15 L 54,6 L 58,15 Z" fill="#c99b2e"/>
+          <polygon points="54,2 48,8 54,14 60,8" fill="#ffffff" stroke="#b8cde0" stroke-width="0.8"/>
+          <polygon points="54,2 51,8 54,14 57,8" fill="#eaf3fc" opacity="0.85"/>
 
-          <circle cx="54" cy="28" r="16" fill="none" stroke="#d4af37" stroke-width="2.6"/>
+          <circle cx="54" cy="28" r="16" fill="none" stroke="#c99b2e" stroke-width="2.6"/>
           <circle cx="54" cy="28" r="14.5" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="0.7"/>
           <circle cx="43" cy="20" r="1" fill="#ffffff"/>
           <circle cx="65" cy="20" r="1" fill="#ffffff"/>
@@ -902,48 +1091,48 @@
 
       <!-- Botanical Floral Garland Trail Closure -->
       <svg class="floral-garland-closure" viewBox="0 0 280 40">
-        <path d="M 15,20 Q 80,12 140,20 T 265,20" fill="none" stroke="#d4af37" stroke-width="1.3" stroke-dasharray="3,3"/>
-        <path d="M 45,20 Q 90,26 140,20 T 235,20" fill="none" stroke="#254233" stroke-width="1.2"/>
+        <path d="M 15,20 Q 80,12 140,20 T 265,20" fill="none" stroke="#c99b2e" stroke-width="1.4" stroke-dasharray="3,3"/>
+        <path d="M 45,20 Q 90,26 140,20 T 235,20" fill="none" stroke="#183d2e" stroke-width="1.3"/>
 
         <g transform="translate(140, 20)">
-          <circle cx="0" cy="-5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="5" cy="-1.5" r="4.5" fill="#f4faf6" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="3" cy="4.5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="-3" cy="4.5" r="4.5" fill="#f4faf6" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="-5" cy="-1.5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="0" cy="0" r="2.2" fill="#132a21"/>
-          <circle cx="0" cy="0" r="1.1" fill="#d4af37"/>
+          <circle cx="0" cy="-5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="5" cy="-1.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="3" cy="4.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="-3" cy="4.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="-5" cy="-1.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="0" cy="0" r="2.2" fill="#0f291e"/>
+          <circle cx="0" cy="0" r="1.2" fill="#d4a437"/>
         </g>
 
         <g transform="translate(205, 18) scale(0.85)">
-          <circle cx="0" cy="-5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="5" cy="-1.5" r="4.5" fill="#f4faf6" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="3" cy="4.5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="-3" cy="4.5" r="4.5" fill="#f4faf6" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="-5" cy="-1.5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="0" cy="0" r="2" fill="#132a21"/>
-          <circle cx="0" cy="0" r="1.1" fill="#d4af37"/>
+          <circle cx="0" cy="-5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="5" cy="-1.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="3" cy="4.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="-3" cy="4.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="-5" cy="-1.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="0" cy="0" r="2" fill="#0f291e"/>
+          <circle cx="0" cy="0" r="1.2" fill="#d4a437"/>
         </g>
 
         <g transform="translate(75, 18) scale(0.85)">
-          <circle cx="0" cy="-5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="5" cy="-1.5" r="4.5" fill="#f4faf6" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="3" cy="4.5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="-3" cy="4.5" r="4.5" fill="#f4faf6" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="-5" cy="-1.5" r="4.5" fill="#edf4f0" stroke="#254233" stroke-width="0.7"/>
-          <circle cx="0" cy="0" r="2" fill="#132a21"/>
-          <circle cx="0" cy="0" r="1.1" fill="#d4af37"/>
+          <circle cx="0" cy="-5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="5" cy="-1.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="3" cy="4.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="-3" cy="4.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="-5" cy="-1.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
+          <circle cx="0" cy="0" r="2" fill="#0f291e"/>
+          <circle cx="0" cy="0" r="1.2" fill="#d4a437"/>
         </g>
 
-        <circle cx="35" cy="20" r="3" fill="#edf4f0" stroke="#254233" stroke-width="0.6"/>
-        <circle cx="35" cy="20" r="1.4" fill="#d4af37"/>
-        <circle cx="245" cy="20" r="3" fill="#edf4f0" stroke="#254233" stroke-width="0.6"/>
-        <circle cx="245" cy="20" r="1.4" fill="#d4af37"/>
+        <circle cx="35" cy="20" r="3" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.7"/>
+        <circle cx="35" cy="20" r="1.4" fill="#d4a437"/>
+        <circle cx="245" cy="20" r="3" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.7"/>
+        <circle cx="245" cy="20" r="1.4" fill="#d4a437"/>
 
-        <ellipse cx="110" cy="14" rx="5" ry="2.2" transform="rotate(-25 110 14)" fill="#4d6f5c" opacity="0.8"/>
-        <ellipse cx="170" cy="14" rx="5" ry="2.2" transform="rotate(25 170 14)" fill="#4d6f5c" opacity="0.8"/>
-        <ellipse cx="58" cy="15" rx="4.5" ry="2" transform="rotate(-20 58 15)" fill="#688d79" opacity="0.8"/>
-        <ellipse cx="222" cy="15" rx="4.5" ry="2" transform="rotate(20 222 15)" fill="#688d79" opacity="0.8"/>
+        <ellipse cx="110" cy="14" rx="5" ry="2.2" transform="rotate(-25 110 14)" fill="#2d5a43" opacity="0.88"/>
+        <ellipse cx="170" cy="14" rx="5" ry="2.2" transform="rotate(25 170 14)" fill="#2d5a43" opacity="0.88"/>
+        <ellipse cx="58" cy="15" rx="4.5" ry="2" transform="rotate(-20 58 15)" fill="#3e7257" opacity="0.85"/>
+        <ellipse cx="222" cy="15" rx="4.5" ry="2" transform="rotate(20 222 15)" fill="#3e7257" opacity="0.85"/>
       </svg>
 
       <footer>
@@ -967,7 +1156,7 @@
           particleCount: 75,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#d4af37', '#f5e1a4', '#2a5242', '#ffffff']
+          colors: ['#c99b2e', '#f2d675', '#173d2e', '#ffffff']
         });
       }
     }
@@ -1005,56 +1194,168 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // 3. Subtle Ambient Golden Particles
+    // 3. Edge-Only Butterflies & Soft Golden Shimmer (never crosses text area)
     const canvas = document.getElementById('ambientCanvas');
     const ctx = canvas.getContext('2d');
-    let particles = [];
+    const mainCard = document.getElementById('main-card');
+    let edgeButterflies = [];
+    let sparkles = [];
+
+    function getEdgeBounds() {
+      const rect = mainCard.getBoundingClientRect();
+      // Keep animated butterflies strictly in the outer left/right gutters outside the card
+      const leftMax = Math.max(0, rect.left - 12);
+      const rightMin = Math.min(canvas.width, rect.right + 12);
+      return { leftMax, rightMin };
+    }
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
 
-    function initParticles() {
-      particles = [];
-      const count = Math.min(35, Math.floor(window.innerWidth / 25));
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
+    function initAmbient() {
+      edgeButterflies = [];
+      sparkles = [];
+      const { leftMax, rightMin } = getEdgeBounds();
+
+      // Add drifting outer-margin butterflies only when side gutters exist (desktop / tablet)
+      if (leftMax >= 24) {
+        const bfCount = Math.min(8, Math.max(4, Math.floor(leftMax / 45) * 2));
+        for (let i = 0; i < bfCount; i++) {
+          const side = i % 2 === 0 ? 'left' : 'right';
+          const x = side === 'left'
+            ? 14 + Math.random() * Math.max(10, leftMax - 24)
+            : rightMin + 10 + Math.random() * Math.max(10, canvas.width - rightMin - 24);
+          edgeButterflies.push({
+            side,
+            x,
+            y: Math.random() * canvas.height,
+            size: 7 + Math.random() * 5,
+            vy: -0.25 - Math.random() * 0.35,
+            vx: (Math.random() - 0.5) * 0.25,
+            wingPhase: Math.random() * Math.PI * 2,
+            wingSpeed: 0.08 + Math.random() * 0.05,
+            tilt: (Math.random() - 0.5) * 0.35,
+            alpha: 0.55 + Math.random() * 0.3
+          });
+        }
+      }
+
+      // Subtle golden sparkles restricted to the very outer margins
+      const sparkleCount = 24;
+      for (let i = 0; i < sparkleCount; i++) {
+        const side = i % 2 === 0 ? 'left' : 'right';
+        const edgeBand = Math.max(14, leftMax);
+        const x = side === 'left'
+          ? Math.random() * edgeBand
+          : canvas.width - Math.random() * edgeBand;
+        sparkles.push({
+          side,
+          x,
           y: Math.random() * canvas.height,
-          r: Math.random() * 2 + 0.8,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: -Math.random() * 0.35 - 0.1,
-          alpha: Math.random() * 0.35 + 0.1
+          r: Math.random() * 1.8 + 0.7,
+          vy: -Math.random() * 0.3 - 0.08,
+          alpha: Math.random() * 0.35 + 0.12
         });
       }
     }
 
-    function animateParticles() {
+    function drawButterfly(b) {
+      const flap = 0.38 + Math.abs(Math.sin(b.wingPhase)) * 0.62;
+      ctx.save();
+      ctx.translate(b.x, b.y);
+      ctx.rotate(b.tilt);
+      ctx.globalAlpha = b.alpha;
+
+      // Left wings
+      ctx.save();
+      ctx.scale(flap, 1);
+      ctx.fillStyle = '#d4a437';
+      ctx.strokeStyle = '#173d2e';
+      ctx.lineWidth = 0.6;
+      ctx.beginPath();
+      ctx.ellipse(-b.size * 0.55, -b.size * 0.25, b.size * 0.62, b.size * 0.42, -0.35, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#e8c766';
+      ctx.beginPath();
+      ctx.ellipse(-b.size * 0.42, b.size * 0.32, b.size * 0.42, b.size * 0.3, 0.35, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // Right wings
+      ctx.save();
+      ctx.scale(flap, 1);
+      ctx.fillStyle = '#d4a437';
+      ctx.strokeStyle = '#173d2e';
+      ctx.lineWidth = 0.6;
+      ctx.beginPath();
+      ctx.ellipse(b.size * 0.55, -b.size * 0.25, b.size * 0.62, b.size * 0.42, 0.35, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#e8c766';
+      ctx.beginPath();
+      ctx.ellipse(b.size * 0.42, b.size * 0.32, b.size * 0.42, b.size * 0.3, -0.35, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // Body
+      ctx.fillStyle = '#173d2e';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, b.size * 0.12, b.size * 0.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function animateAmbient() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.y < -10) {
-          p.y = canvas.height + 10;
-          p.x = Math.random() * canvas.width;
+      const { leftMax, rightMin } = getEdgeBounds();
+
+      for (const s of sparkles) {
+        s.y += s.vy;
+        if (s.y < -10) {
+          s.y = canvas.height + 10;
         }
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(201, 155, 46, ${s.alpha})`;
         ctx.fill();
       }
-      requestAnimationFrame(animateParticles);
+
+      for (const b of edgeButterflies) {
+        b.y += b.vy;
+        b.x += b.vx;
+        b.wingPhase += b.wingSpeed;
+
+        // Strictly bounce inside outer left/right edge gutters so they never enter text area
+        if (b.side === 'left') {
+          if (b.x < 12) { b.x = 12; b.vx = Math.abs(b.vx); }
+          if (b.x > leftMax - 8) { b.x = leftMax - 8; b.vx = -Math.abs(b.vx); }
+        } else {
+          if (b.x < rightMin + 8) { b.x = rightMin + 8; b.vx = Math.abs(b.vx); }
+          if (b.x > canvas.width - 12) { b.x = canvas.width - 12; b.vx = -Math.abs(b.vx); }
+        }
+
+        if (b.y < -20) {
+          b.y = canvas.height + 20;
+        }
+
+        drawButterfly(b);
+      }
+
+      requestAnimationFrame(animateAmbient);
     }
 
     window.addEventListener('resize', () => {
       resizeCanvas();
-      initParticles();
+      initAmbient();
     });
 
     resizeCanvas();
-    initParticles();
-    animateParticles();
+    initAmbient();
+    animateAmbient();
   </script>
 </body>
 </html>
