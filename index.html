@@ -244,7 +244,7 @@
       position: relative;
       z-index: 5;
       width: 100%;
-      max-width: 620px;
+      max-width: 630px;
       padding: 30px 16px 80px 16px;
       display: flex;
       flex-direction: column;
@@ -256,7 +256,7 @@
       background: linear-gradient(180deg, #fffefb 0%, #fcf8ef 100%);
       border: 1.5px solid rgba(201, 155, 46, 0.55);
       border-radius: 28px;
-      padding: 105px 20px 45px 20px;
+      padding: 112px 20px 64px 20px;
       box-shadow: 0 18px 48px rgba(15, 41, 30, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
       position: relative;
       text-align: center;
@@ -277,107 +277,110 @@
       position: absolute;
       pointer-events: none;
       z-index: 1;
+      filter: drop-shadow(0 2px 4px rgba(15, 41, 30, 0.08));
     }
 
     .branch-top-right {
-      top: -8px;
-      right: -8px;
-      width: 185px;
-      height: 185px;
+      top: -6px;
+      right: -6px;
+      width: 215px;
+      height: 215px;
     }
 
     .branch-bottom-left {
-      bottom: -15px;
-      left: -15px;
-      width: 155px;
-      height: 155px;
+      bottom: -12px;
+      left: -12px;
+      width: 185px;
+      height: 185px;
       transform: rotate(180deg);
     }
 
-    /* Edge Butterflies - strictly on card edges, never over text */
+    /* High-Detail Larger Butterflies strictly on card edges (never over text) */
     .edge-butterfly {
       position: absolute;
       pointer-events: none;
       z-index: 2;
-      filter: drop-shadow(0 2px 4px rgba(15, 41, 30, 0.18));
+      filter: drop-shadow(0 3px 6px rgba(15, 41, 30, 0.22));
     }
 
     .bf-top-left {
-      top: 22px;
-      left: 20px;
-      width: 38px;
-      height: 32px;
-      transform: rotate(-18deg);
-      animation: bfFloatA 5.5s ease-in-out infinite;
+      top: 18px;
+      left: 18px;
+      width: 62px;
+      height: 52px;
+      animation: bfFloatA 5.2s ease-in-out infinite;
     }
 
-    .bf-top-right-edge {
-      top: 122px;
+    .bf-mid-right {
+      top: 328px;
       right: 12px;
-      width: 28px;
-      height: 24px;
-      transform: rotate(22deg);
-      animation: bfFloatB 6.2s ease-in-out infinite;
+      width: 44px;
+      height: 36px;
+      animation: bfFloatB 6.1s ease-in-out infinite;
     }
 
     .bf-bottom-right {
-      bottom: 20px;
-      right: 20px;
-      width: 36px;
-      height: 30px;
-      transform: rotate(15deg);
-      animation: bfFloatA 6s ease-in-out infinite reverse;
+      bottom: 14px;
+      right: 18px;
+      width: 58px;
+      height: 48px;
+      animation: bfFloatC 5.8s ease-in-out infinite;
     }
 
-    .bf-bottom-left-edge {
-      bottom: 108px;
+    .bf-mid-left {
+      top: 336px;
       left: 12px;
-      width: 26px;
-      height: 22px;
-      transform: rotate(-24deg);
-      animation: bfFloatB 5.8s ease-in-out infinite;
+      width: 42px;
+      height: 35px;
+      animation: bfFloatA 6.4s ease-in-out infinite reverse;
     }
 
     .edge-butterfly .wing-l {
-      transform-origin: 24px 20px;
-      animation: wingFlapL 1.8s ease-in-out infinite;
+      transform-origin: 40px 32px;
+      animation: wingFlap 1.9s ease-in-out infinite;
     }
 
     .edge-butterfly .wing-r {
-      transform-origin: 24px 20px;
-      animation: wingFlapR 1.8s ease-in-out infinite;
+      transform-origin: 40px 32px;
+      animation: wingFlap 1.9s ease-in-out infinite;
     }
 
-    .bf-top-right-edge .wing-l,
-    .bf-top-right-edge .wing-r {
-      animation-duration: 1.5s;
-      animation-delay: 0.4s;
+    .bf-mid-right .wing-l,
+    .bf-mid-right .wing-r {
+      animation-duration: 1.6s;
+      animation-delay: 0.45s;
     }
 
     .bf-bottom-right .wing-l,
     .bf-bottom-right .wing-r {
-      animation-duration: 2.1s;
+      animation-duration: 2.15s;
       animation-delay: 0.7s;
     }
 
-    @keyframes wingFlapL {
-      0%, 100% { transform: scaleX(1); }
-      50% { transform: scaleX(0.42); }
+    .bf-mid-left .wing-l,
+    .bf-mid-left .wing-r {
+      animation-duration: 1.75s;
+      animation-delay: 0.25s;
     }
 
-    @keyframes wingFlapR {
+    @keyframes wingFlap {
       0%, 100% { transform: scaleX(1); }
-      50% { transform: scaleX(0.42); }
+      50% { transform: scaleX(0.46); }
     }
 
     @keyframes bfFloatA {
-      0%, 100% { transform: translateY(0px) rotate(-16deg); }
-      50% { transform: translateY(-5px) rotate(-10deg); }
+      0%, 100% { transform: translateY(0px) rotate(-18deg); }
+      50% { transform: translateY(-6px) rotate(-11deg); }
     }
 
     @keyframes bfFloatB {
       0%, 100% { transform: translateY(0px) rotate(18deg); }
-      50% { transform: translateY(-4px) rotate(25deg); }
+      50% { transform: translateY(-5px) rotate(25deg); }
+    }
+
+    @keyframes bfFloatC {
+      0%, 100% { transform: translateY(0px) rotate(16deg); }
+      50% { transform: translateY(-6px) rotate(10deg); }
     }
 
     .bismillah {
@@ -432,7 +435,7 @@
     }
 
     .single-host-box {
-      max-width: 420px;
+      max-width: 390px;
       margin: 0 auto 22px auto;
       padding: 16px 20px;
       background: linear-gradient(135deg, #fffdf8, var(--box-warm));
@@ -468,40 +471,43 @@
       z-index: 3;
     }
 
-    /* Always side-by-side in one horizontal line */
+    /* Centered, Larger, Strictly Side-by-Side */
     .symmetric-couple-grid {
       display: flex;
+      flex-direction: row;
       flex-wrap: nowrap;
       align-items: center;
       justify-content: center;
+      text-align: center;
+      width: 100%;
       gap: clamp(6px, 2vw, 14px);
-      margin: 22px 0;
-      padding: 22px 10px;
+      margin: 24px auto;
+      padding: 26px 10px;
       background: linear-gradient(135deg, #ffffff 0%, #f8efd9 100%);
       border-radius: 20px;
       border: 1.6px solid var(--border-gold);
-      box-shadow: 0 8px 22px rgba(15, 41, 30, 0.07);
+      box-shadow: 0 8px 24px rgba(15, 41, 30, 0.08);
       position: relative;
       z-index: 3;
     }
 
     .person-name-unified {
       font-family: 'Amiri', serif;
-      font-size: clamp(1.06rem, 4.2vw, 1.95rem);
+      font-size: clamp(1.36rem, 5.2vw, 2.35rem);
       font-weight: 800;
       line-height: 1.3;
       color: var(--olive-deep) !important;
-      text-shadow: 0 1px 2px rgba(201, 155, 46, 0.25);
+      text-shadow: 0 1px 2px rgba(201, 155, 46, 0.28);
       white-space: nowrap;
     }
 
     .couple-waw {
       font-family: 'Amiri', serif;
-      font-size: clamp(0.95rem, 3.4vw, 1.55rem);
+      font-size: clamp(1.15rem, 4.1vw, 1.85rem);
       color: var(--gold-dark);
       font-weight: 700;
       line-height: 1;
-      padding: 0 2px;
+      padding: 0 3px;
       white-space: nowrap;
     }
 
@@ -622,6 +628,9 @@
       margin-top: 24px;
       margin-bottom: 8px;
       line-height: 1.65;
+      max-width: 82%;
+      margin-left: auto;
+      margin-right: auto;
       position: relative;
       z-index: 3;
     }
@@ -773,8 +782,8 @@
     }
 
     .floral-garland-closure {
-      width: 270px;
-      height: 38px;
+      width: 290px;
+      height: 46px;
       margin-bottom: 14px;
       filter: drop-shadow(0 1px 3px rgba(0,0,0,0.06));
     }
@@ -789,21 +798,214 @@
     }
 
     @media (max-width: 480px) {
-      .main-wrapper { padding: 24px 12px 70px 12px; }
-      .card-royal { padding: 96px 14px 40px 14px; }
-      .symmetric-couple-grid { padding: 18px 8px; }
+      .main-wrapper { padding: 24px 10px 70px 10px; }
+      .card-royal { padding: 102px 12px 58px 12px; }
+      .symmetric-couple-grid { padding: 20px 6px; gap: 6px; }
+      .single-host-box { max-width: 82%; }
       .single-host-box .name { font-size: 1.22rem; }
-      .branch-top-right { width: 155px; height: 155px; }
-      .branch-bottom-left { width: 135px; height: 135px; }
-      .bf-top-left { top: 18px; left: 16px; width: 32px; height: 27px; }
-      .bf-top-right-edge { top: 108px; right: 8px; width: 22px; height: 19px; }
-      .bf-bottom-right { bottom: 16px; right: 16px; width: 30px; height: 25px; }
-      .bf-bottom-left-edge { bottom: 96px; left: 8px; width: 22px; height: 19px; }
-      .floral-garland-closure { width: 230px; height: 34px; }
+      .branch-top-right { width: 175px; height: 175px; }
+      .branch-bottom-left { width: 150px; height: 150px; }
+      .bf-top-left { top: 15px; left: 14px; width: 48px; height: 40px; }
+      .bf-bottom-right { bottom: 12px; right: 14px; width: 46px; height: 38px; }
+      .bf-mid-right, .bf-mid-left { width: 32px; height: 27px; }
+      .bf-mid-right { top: 318px; right: 6px; }
+      .bf-mid-left { top: 326px; left: 6px; }
+      .floral-garland-closure { width: 250px; height: 42px; }
+    }
+
+    @media (max-width: 360px) {
+      .person-name-unified { font-size: 1.24rem; }
+      .couple-waw { font-size: 1.05rem; }
+      .bf-mid-right, .bf-mid-left { display: none; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Shared High-Precision SVG Gradients & Reusable Symbols -->
+  <svg style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true">
+    <defs>
+      <!-- Detailed Botanical Rose Petal Gradients -->
+      <radialGradient id="petalOuterGrad" cx="45%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="55%" stop-color="#f9f2e2"/>
+        <stop offset="100%" stop-color="#e7d9b9"/>
+      </radialGradient>
+      <radialGradient id="petalInnerGrad" cx="50%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#fffef9"/>
+        <stop offset="60%" stop-color="#f3e6ca"/>
+        <stop offset="100%" stop-color="#d8c08e"/>
+      </radialGradient>
+      <radialGradient id="flowerCoreGrad" cx="45%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#f4d87c"/>
+        <stop offset="48%" stop-color="#c99b2e"/>
+        <stop offset="100%" stop-color="#133325"/>
+      </radialGradient>
+      <!-- Botanical Leaf Gradients -->
+      <linearGradient id="leafRichGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#4e8266"/>
+        <stop offset="55%" stop-color="#28543e"/>
+        <stop offset="100%" stop-color="#143324"/>
+      </linearGradient>
+      <linearGradient id="leafSoftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6ca082"/>
+        <stop offset="100%" stop-color="#2c5c44"/>
+      </linearGradient>
+      <!-- Detailed Butterfly Gradients -->
+      <linearGradient id="bfWingUpper" x1="15%" y1="10%" x2="90%" y2="90%">
+        <stop offset="0%" stop-color="#fff4c4"/>
+        <stop offset="35%" stop-color="#e5be53"/>
+        <stop offset="78%" stop-color="#b8841b"/>
+        <stop offset="100%" stop-color="#694709"/>
+      </linearGradient>
+      <linearGradient id="bfWingLower" x1="20%" y1="0%" x2="80%" y2="100%">
+        <stop offset="0%" stop-color="#f5d97e"/>
+        <stop offset="60%" stop-color="#c99527"/>
+        <stop offset="100%" stop-color="#7c550d"/>
+      </linearGradient>
+      <linearGradient id="bfBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#1e4d39"/>
+        <stop offset="100%" stop-color="#0b1f17"/>
+      </linearGradient>
+
+      <!-- Reusable High-Detail Botanical Rose Blossom -->
+      <g id="detailed-rose">
+        <!-- Outer 5 sculpted petals with delicate inner veins -->
+        <g>
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+        <g transform="rotate(72)">
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+        <g transform="rotate(144)">
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+        <g transform="rotate(216)">
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+        <g transform="rotate(288)">
+          <path d="M0,0 C-11,-7 -15,-22 -5,-26 C-1,-28 1,-28 5,-26 C15,-22 11,-7 0,0 Z" fill="url(#petalOuterGrad)" stroke="#1d4433" stroke-width="0.75"/>
+          <path d="M0,-3 C-3,-11 -3,-18 -1,-23 M0,-3 C3,-11 3,-18 1,-23" fill="none" stroke="#c99b2e" stroke-width="0.45" opacity="0.65"/>
+        </g>
+
+        <!-- Mid Layer 5 rotated inner petals -->
+        <g transform="rotate(36)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <g transform="rotate(108)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <g transform="rotate(180)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <g transform="rotate(252)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <g transform="rotate(324)">
+          <path d="M0,0 C-8,-5 -10,-15 -3,-18 C0,-19 0,-19 3,-18 C10,-15 8,-5 0,0 Z" fill="url(#petalInnerGrad)" stroke="#24523d" stroke-width="0.65"/>
+          <path d="M0,-3 L0,-14" stroke="#b88920" stroke-width="0.4" opacity="0.6"/>
+        </g>
+
+        <!-- Inner cup rosette swirl -->
+        <path d="M-7,-3 C-6,-10 5,-10 7,-3 C9,4 3,9 -4,7 C-8,5 -9,0 -5,-3 C-2,-5 3,-4 4,0 C4,3 1,5 -2,3" fill="none" stroke="#9e741c" stroke-width="0.7" stroke-linecap="round"/>
+
+        <!-- Fine radiating stamens & golden anthers -->
+        <g stroke="#133325" stroke-width="0.55" stroke-linecap="round">
+          <line x1="0" y1="0" x2="0" y2="-10.5"/>
+          <line x1="0" y1="0" x2="6.2" y2="-8.5"/>
+          <line x1="0" y1="0" x2="10" y2="-3.2"/>
+          <line x1="0" y1="0" x2="8.8" y2="5.5"/>
+          <line x1="0" y1="0" x2="3.5" y2="9.8"/>
+          <line x1="0" y1="0" x2="-3.5" y2="9.8"/>
+          <line x1="0" y1="0" x2="-8.8" y2="5.5"/>
+          <line x1="0" y1="0" x2="-10" y2="-3.2"/>
+          <line x1="0" y1="0" x2="-6.2" y2="-8.5"/>
+        </g>
+        <g fill="#e5be53" stroke="#133325" stroke-width="0.35">
+          <circle cx="0" cy="-10.8" r="1.2"/>
+          <circle cx="6.4" cy="-8.8" r="1.15"/>
+          <circle cx="10.2" cy="-3.3" r="1.2"/>
+          <circle cx="9" cy="5.7" r="1.15"/>
+          <circle cx="3.6" cy="10.1" r="1.15"/>
+          <circle cx="-3.6" cy="10.1" r="1.15"/>
+          <circle cx="-9" cy="5.7" r="1.15"/>
+          <circle cx="-10.2" cy="-3.3" r="1.2"/>
+          <circle cx="-6.4" cy="-8.8" r="1.15"/>
+        </g>
+
+        <!-- Rich central pistil -->
+        <circle cx="0" cy="0" r="5.2" fill="url(#flowerCoreGrad)" stroke="#102b1f" stroke-width="0.7"/>
+        <circle cx="-1" cy="-1" r="1.6" fill="#fff4c4" opacity="0.85"/>
+      </g>
+
+      <!-- Reusable Detailed Botanical Leaf with Midrib & Veins -->
+      <g id="detailed-leaf">
+        <path d="M0,0 C-7,-9 -8,-24 0,-34 C8,-24 7,-9 0,0 Z" fill="url(#leafRichGrad)" stroke="#112b1f" stroke-width="0.7"/>
+        <path d="M0,-1 C0,-12 0,-23 0,-32" fill="none" stroke="#c8decb" stroke-width="0.65" opacity="0.75"/>
+        <path d="M0,-9 L-4,-14 M0,-9 L4,-14 M0,-17 L-4.5,-22 M0,-17 L4.5,-22 M0,-24 L-2.8,-28 M0,-24 L2.8,-28" fill="none" stroke="#c8decb" stroke-width="0.45" opacity="0.6"/>
+      </g>
+
+      <!-- Reusable Detailed Rosebud -->
+      <g id="detailed-bud">
+        <path d="M0,0 C-5,-4 -6,-13 0,-18 C6,-13 5,-4 0,0 Z" fill="url(#petalOuterGrad)" stroke="#183d2e" stroke-width="0.7"/>
+        <path d="M-3,-4 C-1,-9 1,-13 2,-16" fill="none" stroke="#c99b2e" stroke-width="0.55"/>
+        <path d="M0,1 C-4,-2 -6,-7 -3,-11 C-2,-6 -1,-3 0,-1 C1,-3 2,-6 3,-11 C6,-7 4,-2 0,1 Z" fill="url(#leafSoftGrad)" stroke="#133325" stroke-width="0.5"/>
+      </g>
+
+      <!-- Reusable High-Detail Royal Golden Butterfly -->
+      <g id="detailed-butterfly">
+        <!-- Left Wing Assembly -->
+        <g class="wing-l">
+          <!-- Upper Left Wing -->
+          <path d="M38.5,31 C30,13 13,5 7,12 C2,18 6,27 12,30 C19,34 30,34 38.5,33 Z" fill="url(#bfWingUpper)" stroke="#143324" stroke-width="1"/>
+          <!-- Lower Left Wing (Swallowtail scallop) -->
+          <path d="M38.5,33 C27,34 15,38 14,47 C13.5,53 20,57 25,54 C29,51 35,44 38.5,37 Z" fill="url(#bfWingLower)" stroke="#143324" stroke-width="0.95"/>
+          <!-- Wing Veins -->
+          <path d="M37,31 C28,23 18,16 10,14 M36,32 C26,27 16,25 9,25 M36,34 C27,38 20,44 17,50 M37,35 C31,42 27,48 24,52" fill="none" stroke="#173d2e" stroke-width="0.65" opacity="0.7"/>
+          <!-- Inner Luminous Highlight & Pearl Margin Spots -->
+          <path d="M33,29 C26,20 17,15 13,18 C11,21 16,28 33,31 Z" fill="#fff7d6" opacity="0.42"/>
+          <circle cx="11.5" cy="14.5" r="1.6" fill="#fffef7" opacity="0.92"/>
+          <circle cx="9.2" cy="19.8" r="1.3" fill="#fffef7" opacity="0.88"/>
+          <circle cx="11.4" cy="25.2" r="1.2" fill="#fffef7" opacity="0.85"/>
+          <circle cx="18" cy="48.5" r="1.4" fill="#fffef7" opacity="0.85"/>
+          <circle cx="22.8" cy="51.2" r="1.15" fill="#fffef7" opacity="0.8"/>
+        </g>
+
+        <!-- Right Wing Assembly -->
+        <g class="wing-r">
+          <!-- Upper Right Wing -->
+          <path d="M41.5,31 C50,13 67,5 73,12 C78,18 74,27 68,30 C61,34 50,34 41.5,33 Z" fill="url(#bfWingUpper)" stroke="#143324" stroke-width="1"/>
+          <!-- Lower Right Wing -->
+          <path d="M41.5,33 C53,34 65,38 66,47 C66.5,53 60,57 55,54 C51,51 45,44 41.5,37 Z" fill="url(#bfWingLower)" stroke="#143324" stroke-width="0.95"/>
+          <!-- Wing Veins -->
+          <path d="M43,31 C52,23 62,16 70,14 M44,32 C54,27 64,25 71,25 M44,34 C53,38 60,44 63,50 M43,35 C49,42 53,48 56,52" fill="none" stroke="#173d2e" stroke-width="0.65" opacity="0.7"/>
+          <!-- Inner Luminous Highlight & Pearl Margin Spots -->
+          <path d="M47,29 C54,20 63,15 67,18 C69,21 64,28 47,31 Z" fill="#fff7d6" opacity="0.42"/>
+          <circle cx="68.5" cy="14.5" r="1.6" fill="#fffef7" opacity="0.92"/>
+          <circle cx="70.8" cy="19.8" r="1.3" fill="#fffef7" opacity="0.88"/>
+          <circle cx="68.6" cy="25.2" r="1.2" fill="#fffef7" opacity="0.85"/>
+          <circle cx="62" cy="48.5" r="1.4" fill="#fffef7" opacity="0.85"/>
+          <circle cx="57.2" cy="51.2" r="1.15" fill="#fffef7" opacity="0.8"/>
+        </g>
+
+        <!-- Thorax, Abdomen & Delicate Antennae -->
+        <circle cx="40" cy="24.5" r="2.2" fill="#143324"/>
+        <ellipse cx="40" cy="30.5" rx="2.3" ry="4.5" fill="url(#bfBodyGrad)"/>
+        <ellipse cx="40" cy="40.5" rx="1.6" ry="6.8" fill="url(#bfBodyGrad)"/>
+        <path d="M39,23 Q34,13 29,12 M41,23 Q46,13 51,12" fill="none" stroke="#143324" stroke-width="0.95" stroke-linecap="round"/>
+        <circle cx="29" cy="12" r="1.1" fill="#d4a437"/>
+        <circle cx="51" cy="12" r="1.1" fill="#d4a437"/>
+      </g>
+    </defs>
+  </svg>
 
   <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
 
@@ -851,132 +1053,78 @@
   <div class="main-wrapper">
     <main class="card-royal" id="main-card">
 
-      <!-- Top Right Bouquet -->
-      <svg class="botanical-branch branch-top-right" viewBox="0 0 210 210">
-        <path d="M 210,0 Q 165,22 135,70 T 70,140" fill="none" stroke="#183d2e" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M 165,30 Q 125,45 105,85" fill="none" stroke="#183d2e" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M 190,12 Q 155,14 125,42" fill="none" stroke="#183d2e" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M 140,70 Q 105,75 75,115" fill="none" stroke="#183d2e" stroke-width="1.1" stroke-linecap="round"/>
+      <!-- Top Right Detailed Botanical Rose Bouquet -->
+      <svg class="botanical-branch branch-top-right" viewBox="0 0 220 220">
+        <!-- Graceful Stems -->
+        <path d="M 220,0 Q 170,24 136,74 T 66,148" fill="none" stroke="#183d2e" stroke-width="1.9" stroke-linecap="round"/>
+        <path d="M 172,30 Q 130,48 106,92" fill="none" stroke="#183d2e" stroke-width="1.35" stroke-linecap="round"/>
+        <path d="M 196,12 Q 158,15 126,46" fill="none" stroke="#183d2e" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M 142,74 Q 108,82 78,124" fill="none" stroke="#183d2e" stroke-width="1.15" stroke-linecap="round"/>
+        <!-- Fine Golden Tendrils & Buds -->
+        <path d="M 162,48 Q 180,68 175,92" fill="none" stroke="#c99b2e" stroke-width="0.9" stroke-linecap="round"/>
+        <path d="M 118,92 Q 92,98 76,84" fill="none" stroke="#c99b2e" stroke-width="0.85" stroke-linecap="round"/>
 
-        <path d="M 180,24 Q 155,14 172,-2 Z" fill="#3a6b52" opacity="0.85"/>
-        <path d="M 152,48 Q 128,34 148,18 Z" fill="#27523d" opacity="0.88"/>
-        <path d="M 118,85 Q 98,72 118,55 Z" fill="#1e4432" opacity="0.85"/>
-        <path d="M 88,122 Q 68,110 88,95 Z" fill="#3a6b52" opacity="0.8"/>
+        <!-- Veined Leaves -->
+        <use href="#detailed-leaf" transform="translate(184, 24) rotate(-52) scale(0.95)"/>
+        <use href="#detailed-leaf" transform="translate(160, 44) rotate(-135) scale(0.88)"/>
+        <use href="#detailed-leaf" transform="translate(136, 74) rotate(-42) scale(1.0)"/>
+        <use href="#detailed-leaf" transform="translate(112, 98) rotate(-125) scale(0.82)"/>
+        <use href="#detailed-leaf" transform="translate(88, 126) rotate(-55) scale(0.78)"/>
+        <use href="#detailed-leaf" transform="translate(174, 62) rotate(138) scale(0.75)"/>
 
-        <g transform="translate(150, 65)">
-          <circle cx="0" cy="-11" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="10.5" cy="-3.5" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="6.5" cy="9" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="-6.5" cy="9" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="-10.5" cy="-3.5" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="0" cy="0" r="4.5" fill="#0f291e"/>
-          <circle cx="0" cy="0" r="2.4" fill="#d4a437"/>
-          <circle cx="0" cy="-6" r="1" fill="#0f291e"/>
-          <circle cx="5.5" cy="-2" r="1" fill="#0f291e"/>
-          <circle cx="3.5" cy="5" r="1" fill="#0f291e"/>
-          <circle cx="-3.5" cy="5" r="1" fill="#0f291e"/>
-          <circle cx="-5.5" cy="-2" r="1" fill="#0f291e"/>
-        </g>
+        <!-- Detailed Rosebuds -->
+        <use href="#detailed-bud" transform="translate(82, 134) rotate(-135) scale(0.95)"/>
+        <use href="#detailed-bud" transform="translate(128, 44) rotate(-65) scale(0.85)"/>
+        <use href="#detailed-bud" transform="translate(175, 92) rotate(172) scale(0.8)"/>
 
-        <g transform="translate(108, 102) scale(0.92)">
-          <circle cx="0" cy="-11" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="10.5" cy="-3.5" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="6.5" cy="9" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="-6.5" cy="9" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="-10.5" cy="-3.5" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="0" cy="0" r="4.5" fill="#0f291e"/>
-          <circle cx="0" cy="0" r="2.4" fill="#d4a437"/>
-        </g>
+        <!-- Golden Berries -->
+        <circle cx="102" cy="64" r="2.2" fill="#e5be53" stroke="#183d2e" stroke-width="0.5"/>
+        <circle cx="94" cy="70" r="1.8" fill="#c99b2e" stroke="#183d2e" stroke-width="0.5"/>
+        <circle cx="76" cy="84" r="2.1" fill="#e5be53" stroke="#183d2e" stroke-width="0.5"/>
+        <circle cx="158" cy="96" r="2" fill="#e5be53" stroke="#183d2e" stroke-width="0.5"/>
 
-        <g transform="translate(175, 24) scale(0.72)">
-          <circle cx="0" cy="-10" r="8" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9"/>
-          <circle cx="9.5" cy="-3" r="8" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9"/>
-          <circle cx="6" cy="8" r="8" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9"/>
-          <circle cx="-6" cy="8" r="8" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9"/>
-          <circle cx="-9.5" cy="-3" r="8" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9"/>
-          <circle cx="0" cy="0" r="4" fill="#0f291e"/>
-          <circle cx="0" cy="0" r="2.2" fill="#d4a437"/>
-        </g>
+        <!-- Three Detailed Multi-Layered Blossoms -->
+        <use href="#detailed-rose" transform="translate(154, 64) scale(1.06)"/>
+        <use href="#detailed-rose" transform="translate(112, 102) rotate(22) scale(0.88)"/>
+        <use href="#detailed-rose" transform="translate(182, 24) rotate(-18) scale(0.72)"/>
       </svg>
 
-      <!-- Bottom Left Bouquet -->
-      <svg class="botanical-branch branch-bottom-left" viewBox="0 0 210 210">
-        <path d="M 210,0 Q 165,22 135,70 T 70,140" fill="none" stroke="#183d2e" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M 165,30 Q 125,45 105,85" fill="none" stroke="#183d2e" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M 180,24 Q 155,14 172,-2 Z" fill="#3a6b52" opacity="0.85"/>
-        <path d="M 152,48 Q 128,34 148,18 Z" fill="#27523d" opacity="0.88"/>
+      <!-- Bottom Left Detailed Botanical Rose Bouquet -->
+      <svg class="botanical-branch branch-bottom-left" viewBox="0 0 220 220">
+        <path d="M 220,0 Q 170,24 136,74 T 74,142" fill="none" stroke="#183d2e" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 172,30 Q 130,48 108,88" fill="none" stroke="#183d2e" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M 160,50 Q 178,70 172,94" fill="none" stroke="#c99b2e" stroke-width="0.85" stroke-linecap="round"/>
 
-        <g transform="translate(150, 65)">
-          <circle cx="0" cy="-11" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="10.5" cy="-3.5" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="6.5" cy="9" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="-6.5" cy="9" r="9" fill="#fffaf0" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="-10.5" cy="-3.5" r="9" fill="#f7f2e4" stroke="#1b4232" stroke-width="0.9" opacity="0.98"/>
-          <circle cx="0" cy="0" r="4.5" fill="#0f291e"/>
-          <circle cx="0" cy="0" r="2.4" fill="#d4a437"/>
-        </g>
+        <use href="#detailed-leaf" transform="translate(184, 24) rotate(-50) scale(0.9)"/>
+        <use href="#detailed-leaf" transform="translate(156, 48) rotate(-132) scale(0.84)"/>
+        <use href="#detailed-leaf" transform="translate(128, 80) rotate(-48) scale(0.88)"/>
+        <use href="#detailed-leaf" transform="translate(102, 110) rotate(-122) scale(0.74)"/>
+
+        <use href="#detailed-bud" transform="translate(88, 128) rotate(-132) scale(0.88)"/>
+        <use href="#detailed-bud" transform="translate(172, 94) rotate(172) scale(0.76)"/>
+
+        <circle cx="106" cy="70" r="2" fill="#e5be53" stroke="#183d2e" stroke-width="0.5"/>
+        <circle cx="98" cy="76" r="1.7" fill="#c99b2e" stroke="#183d2e" stroke-width="0.5"/>
+
+        <use href="#detailed-rose" transform="translate(154, 62) scale(1.0)"/>
+        <use href="#detailed-rose" transform="translate(116, 98) rotate(28) scale(0.74)"/>
       </svg>
 
-      <!-- Corner & Edge Butterflies (strictly along card borders, away from text) -->
-      <svg class="edge-butterfly bf-top-left" viewBox="0 0 48 40">
-        <defs>
-          <linearGradient id="goldWing1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f2d675"/>
-            <stop offset="60%" stop-color="#c99b2e"/>
-            <stop offset="100%" stop-color="#8c6512"/>
-          </linearGradient>
-        </defs>
-        <g class="wing-l">
-          <path d="M23,19 C16,5 3,6 5,18 C6,24 15,24 23,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
-          <path d="M23,21 C14,23 8,31 14,35 C19,37 22,29 23,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
-          <circle cx="13" cy="15" r="1.6" fill="#fffdf8" opacity="0.85"/>
-        </g>
-        <g class="wing-r">
-          <path d="M25,19 C32,5 45,6 43,18 C42,24 33,24 25,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
-          <path d="M25,21 C34,23 40,31 34,35 C29,37 26,29 25,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
-          <circle cx="35" cy="15" r="1.6" fill="#fffdf8" opacity="0.85"/>
-        </g>
-        <ellipse cx="24" cy="21" rx="1.5" ry="6.5" fill="#173d2e"/>
-        <path d="M23,15 Q20,9 18,10 M25,15 Q28,9 30,10" fill="none" stroke="#173d2e" stroke-width="0.8" stroke-linecap="round"/>
+      <!-- High-Precision Larger Butterflies on Card Edges (Never Over Text) -->
+      <svg class="edge-butterfly bf-top-left" viewBox="0 0 80 68">
+        <use href="#detailed-butterfly"/>
       </svg>
 
-      <svg class="edge-butterfly bf-top-right-edge" viewBox="0 0 48 40">
-        <g class="wing-l">
-          <path d="M23,19 C16,5 3,6 5,18 C6,24 15,24 23,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
-          <path d="M23,21 C14,23 8,31 14,35 C19,37 22,29 23,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
-        </g>
-        <g class="wing-r">
-          <path d="M25,19 C32,5 45,6 43,18 C42,24 33,24 25,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
-          <path d="M25,21 C34,23 40,31 34,35 C29,37 26,29 25,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
-        </g>
-        <ellipse cx="24" cy="21" rx="1.5" ry="6.5" fill="#173d2e"/>
+      <svg class="edge-butterfly bf-mid-right" viewBox="0 0 80 68">
+        <use href="#detailed-butterfly"/>
       </svg>
 
-      <svg class="edge-butterfly bf-bottom-right" viewBox="0 0 48 40">
-        <g class="wing-l">
-          <path d="M23,19 C16,5 3,6 5,18 C6,24 15,24 23,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
-          <path d="M23,21 C14,23 8,31 14,35 C19,37 22,29 23,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
-          <circle cx="13" cy="15" r="1.6" fill="#fffdf8" opacity="0.85"/>
-        </g>
-        <g class="wing-r">
-          <path d="M25,19 C32,5 45,6 43,18 C42,24 33,24 25,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
-          <path d="M25,21 C34,23 40,31 34,35 C29,37 26,29 25,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
-          <circle cx="35" cy="15" r="1.6" fill="#fffdf8" opacity="0.85"/>
-        </g>
-        <ellipse cx="24" cy="21" rx="1.5" ry="6.5" fill="#173d2e"/>
-        <path d="M23,15 Q20,9 18,10 M25,15 Q28,9 30,10" fill="none" stroke="#173d2e" stroke-width="0.8" stroke-linecap="round"/>
+      <svg class="edge-butterfly bf-bottom-right" viewBox="0 0 80 68">
+        <use href="#detailed-butterfly"/>
       </svg>
 
-      <svg class="edge-butterfly bf-bottom-left-edge" viewBox="0 0 48 40">
-        <g class="wing-l">
-          <path d="M23,19 C16,5 3,6 5,18 C6,24 15,24 23,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
-          <path d="M23,21 C14,23 8,31 14,35 C19,37 22,29 23,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
-        </g>
-        <g class="wing-r">
-          <path d="M25,19 C32,5 45,6 43,18 C42,24 33,24 25,21 Z" fill="url(#goldWing1)" stroke="#173d2e" stroke-width="0.8"/>
-          <path d="M25,21 C34,23 40,31 34,35 C29,37 26,29 25,23 Z" fill="#e5c158" stroke="#173d2e" stroke-width="0.7"/>
-        </g>
-        <ellipse cx="24" cy="21" rx="1.5" ry="6.5" fill="#173d2e"/>
+      <svg class="edge-butterfly bf-mid-left" viewBox="0 0 80 68">
+        <use href="#detailed-butterfly"/>
       </svg>
 
       <div class="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
@@ -1002,7 +1150,7 @@
         بدعوتكم لحضور حفل زواج ابنه
       </p>
 
-      <!-- Couple Section (Strictly Side-by-Side) -->
+      <!-- Couple Section (Centered, Larger Font, Side-by-Side) -->
       <div class="symmetric-couple-grid">
         <div class="person-name-unified">السيد سليم</div>
         <div class="couple-waw">من</div>
@@ -1089,50 +1237,27 @@
         </svg>
       </div>
 
-      <!-- Botanical Floral Garland Trail Closure -->
-      <svg class="floral-garland-closure" viewBox="0 0 280 40">
-        <path d="M 15,20 Q 80,12 140,20 T 265,20" fill="none" stroke="#c99b2e" stroke-width="1.4" stroke-dasharray="3,3"/>
-        <path d="M 45,20 Q 90,26 140,20 T 235,20" fill="none" stroke="#183d2e" stroke-width="1.3"/>
+      <!-- Detailed Botanical Floral Garland Closure -->
+      <svg class="floral-garland-closure" viewBox="0 0 300 48">
+        <path d="M 16,24 Q 84,14 150,24 T 284,24" fill="none" stroke="#c99b2e" stroke-width="1.35" stroke-dasharray="3,3"/>
+        <path d="M 48,24 Q 98,32 150,24 T 252,24" fill="none" stroke="#183d2e" stroke-width="1.3"/>
 
-        <g transform="translate(140, 20)">
-          <circle cx="0" cy="-5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="5" cy="-1.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="3" cy="4.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="-3" cy="4.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="-5" cy="-1.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="0" cy="0" r="2.2" fill="#0f291e"/>
-          <circle cx="0" cy="0" r="1.2" fill="#d4a437"/>
-        </g>
+        <!-- Veined Leaves along Garland -->
+        <use href="#detailed-leaf" transform="translate(124, 24) rotate(-68) scale(0.46)"/>
+        <use href="#detailed-leaf" transform="translate(176, 24) rotate(68) scale(0.46)"/>
+        <use href="#detailed-leaf" transform="translate(114, 26) rotate(-112) scale(0.42)"/>
+        <use href="#detailed-leaf" transform="translate(186, 26) rotate(112) scale(0.42)"/>
+        <use href="#detailed-leaf" transform="translate(64, 24) rotate(-75) scale(0.42)"/>
+        <use href="#detailed-leaf" transform="translate(236, 24) rotate(75) scale(0.42)"/>
 
-        <g transform="translate(205, 18) scale(0.85)">
-          <circle cx="0" cy="-5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="5" cy="-1.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="3" cy="4.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="-3" cy="4.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="-5" cy="-1.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="0" cy="0" r="2" fill="#0f291e"/>
-          <circle cx="0" cy="0" r="1.2" fill="#d4a437"/>
-        </g>
+        <!-- Detailed Mini Blossoms -->
+        <use href="#detailed-rose" transform="translate(150, 24) scale(0.56)"/>
+        <use href="#detailed-rose" transform="translate(216, 22) rotate(18) scale(0.43)"/>
+        <use href="#detailed-rose" transform="translate(84, 22) rotate(-18) scale(0.43)"/>
 
-        <g transform="translate(75, 18) scale(0.85)">
-          <circle cx="0" cy="-5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="5" cy="-1.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="3" cy="4.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="-3" cy="4.5" r="4.5" fill="#fffaf0" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="-5" cy="-1.5" r="4.5" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.8"/>
-          <circle cx="0" cy="0" r="2" fill="#0f291e"/>
-          <circle cx="0" cy="0" r="1.2" fill="#d4a437"/>
-        </g>
-
-        <circle cx="35" cy="20" r="3" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.7"/>
-        <circle cx="35" cy="20" r="1.4" fill="#d4a437"/>
-        <circle cx="245" cy="20" r="3" fill="#f7f2e4" stroke="#183d2e" stroke-width="0.7"/>
-        <circle cx="245" cy="20" r="1.4" fill="#d4a437"/>
-
-        <ellipse cx="110" cy="14" rx="5" ry="2.2" transform="rotate(-25 110 14)" fill="#2d5a43" opacity="0.88"/>
-        <ellipse cx="170" cy="14" rx="5" ry="2.2" transform="rotate(25 170 14)" fill="#2d5a43" opacity="0.88"/>
-        <ellipse cx="58" cy="15" rx="4.5" ry="2" transform="rotate(-20 58 15)" fill="#3e7257" opacity="0.85"/>
-        <ellipse cx="222" cy="15" rx="4.5" ry="2" transform="rotate(20 222 15)" fill="#3e7257" opacity="0.85"/>
+        <!-- Buds at ends -->
+        <use href="#detailed-bud" transform="translate(40, 24) rotate(-85) scale(0.62)"/>
+        <use href="#detailed-bud" transform="translate(260, 24) rotate(85) scale(0.62)"/>
       </svg>
 
       <footer>
@@ -1194,24 +1319,31 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // 3. Edge-Only Butterflies & Soft Golden Shimmer (never crosses text area)
+    // 3. High-DPI Edge-Only Detailed Butterflies & Soft Shimmer (Never Crosses Text)
     const canvas = document.getElementById('ambientCanvas');
     const ctx = canvas.getContext('2d');
     const mainCard = document.getElementById('main-card');
+    let viewW = window.innerWidth;
+    let viewH = window.innerHeight;
     let edgeButterflies = [];
     let sparkles = [];
 
     function getEdgeBounds() {
       const rect = mainCard.getBoundingClientRect();
-      // Keep animated butterflies strictly in the outer left/right gutters outside the card
-      const leftMax = Math.max(0, rect.left - 12);
-      const rightMin = Math.min(canvas.width, rect.right + 12);
+      const leftMax = Math.max(0, rect.left - 14);
+      const rightMin = Math.min(viewW, rect.right + 14);
       return { leftMax, rightMin };
     }
 
     function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      viewW = window.innerWidth;
+      viewH = window.innerHeight;
+      canvas.width = Math.floor(viewW * dpr);
+      canvas.height = Math.floor(viewH * dpr);
+      canvas.style.width = viewW + 'px';
+      canvas.style.height = viewH + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     function initAmbient() {
@@ -1219,104 +1351,152 @@
       sparkles = [];
       const { leftMax, rightMin } = getEdgeBounds();
 
-      // Add drifting outer-margin butterflies only when side gutters exist (desktop / tablet)
-      if (leftMax >= 24) {
-        const bfCount = Math.min(8, Math.max(4, Math.floor(leftMax / 45) * 2));
+      // Add high-detail larger butterflies strictly in outer left/right margins outside the card
+      if (leftMax >= 34) {
+        const bfCount = Math.min(10, Math.max(4, Math.floor(leftMax / 42) * 2));
         for (let i = 0; i < bfCount; i++) {
           const side = i % 2 === 0 ? 'left' : 'right';
+          const pad = 20;
           const x = side === 'left'
-            ? 14 + Math.random() * Math.max(10, leftMax - 24)
-            : rightMin + 10 + Math.random() * Math.max(10, canvas.width - rightMin - 24);
+            ? pad + Math.random() * Math.max(8, leftMax - pad * 2)
+            : rightMin + pad + Math.random() * Math.max(8, viewW - rightMin - pad * 2);
           edgeButterflies.push({
             side,
             x,
-            y: Math.random() * canvas.height,
-            size: 7 + Math.random() * 5,
-            vy: -0.25 - Math.random() * 0.35,
-            vx: (Math.random() - 0.5) * 0.25,
+            y: Math.random() * viewH,
+            size: 13 + Math.random() * 6,
+            vy: -0.24 - Math.random() * 0.34,
+            vx: (Math.random() - 0.5) * 0.24,
             wingPhase: Math.random() * Math.PI * 2,
-            wingSpeed: 0.08 + Math.random() * 0.05,
+            wingSpeed: 0.075 + Math.random() * 0.045,
             tilt: (Math.random() - 0.5) * 0.35,
-            alpha: 0.55 + Math.random() * 0.3
+            alpha: 0.72 + Math.random() * 0.22
           });
         }
       }
 
-      // Subtle golden sparkles restricted to the very outer margins
-      const sparkleCount = 24;
+      // Subtle golden sparkles restricted strictly to outer edges
+      const sparkleCount = 26;
       for (let i = 0; i < sparkleCount; i++) {
         const side = i % 2 === 0 ? 'left' : 'right';
-        const edgeBand = Math.max(14, leftMax);
+        const edgeBand = Math.max(12, leftMax);
         const x = side === 'left'
           ? Math.random() * edgeBand
-          : canvas.width - Math.random() * edgeBand;
+          : viewW - Math.random() * edgeBand;
         sparkles.push({
           side,
           x,
-          y: Math.random() * canvas.height,
+          y: Math.random() * viewH,
           r: Math.random() * 1.8 + 0.7,
-          vy: -Math.random() * 0.3 - 0.08,
-          alpha: Math.random() * 0.35 + 0.12
+          vy: -Math.random() * 0.28 - 0.08,
+          alpha: Math.random() * 0.36 + 0.14
         });
       }
     }
 
+    function drawDetailedWingHalf(s, dir) {
+      const gradU = ctx.createLinearGradient(0, -s * 0.8, dir * s * 1.15, s * 0.2);
+      gradU.addColorStop(0, '#fff4c4');
+      gradU.addColorStop(0.42, '#e5be53');
+      gradU.addColorStop(0.85, '#b8841b');
+      gradU.addColorStop(1, '#6e4a0a');
+
+      const gradL = ctx.createLinearGradient(0, 0, dir * s * 0.8, s * 0.9);
+      gradL.addColorStop(0, '#f5d97e');
+      gradL.addColorStop(0.65, '#c99527');
+      gradL.addColorStop(1, '#7a530c');
+
+      // Upper sculpted wing
+      ctx.beginPath();
+      ctx.moveTo(dir * s * 0.08, -s * 0.05);
+      ctx.bezierCurveTo(dir * s * 0.45, -s * 0.82, dir * s * 1.25, -s * 0.92, dir * s * 1.18, -s * 0.32);
+      ctx.bezierCurveTo(dir * s * 1.12, s * 0.08, dir * s * 0.52, s * 0.12, dir * s * 0.08, s * 0.05);
+      ctx.closePath();
+      ctx.fillStyle = gradU;
+      ctx.fill();
+      ctx.lineWidth = 0.7;
+      ctx.strokeStyle = '#143324';
+      ctx.stroke();
+
+      // Lower sculpted wing
+      ctx.beginPath();
+      ctx.moveTo(dir * s * 0.08, s * 0.05);
+      ctx.bezierCurveTo(dir * s * 0.58, s * 0.08, dir * s * 0.92, s * 0.32, dir * s * 0.8, s * 0.68);
+      ctx.bezierCurveTo(dir * s * 0.68, s * 0.95, dir * s * 0.26, s * 0.72, dir * s * 0.08, s * 0.28);
+      ctx.closePath();
+      ctx.fillStyle = gradL;
+      ctx.fill();
+      ctx.stroke();
+
+      // Crisp inner veins
+      ctx.beginPath();
+      ctx.moveTo(dir * s * 0.14, -s * 0.02);
+      ctx.quadraticCurveTo(dir * s * 0.6, -s * 0.45, dir * s * 0.96, -s * 0.55);
+      ctx.moveTo(dir * s * 0.14, s * 0.02);
+      ctx.quadraticCurveTo(dir * s * 0.56, -s * 0.14, dir * s * 0.98, -s * 0.15);
+      ctx.moveTo(dir * s * 0.14, s * 0.12);
+      ctx.quadraticCurveTo(dir * s * 0.48, s * 0.35, dir * s * 0.64, s * 0.64);
+      ctx.lineWidth = 0.48;
+      ctx.strokeStyle = 'rgba(20, 51, 36, 0.65)';
+      ctx.stroke();
+
+      // Pearl margin dots
+      ctx.fillStyle = 'rgba(255, 253, 245, 0.92)';
+      ctx.beginPath();
+      ctx.arc(dir * s * 0.96, -s * 0.52, s * 0.065, 0, Math.PI * 2);
+      ctx.arc(dir * s * 1.02, -s * 0.28, s * 0.055, 0, Math.PI * 2);
+      ctx.arc(dir * s * 0.64, s * 0.58, s * 0.055, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
     function drawButterfly(b) {
-      const flap = 0.38 + Math.abs(Math.sin(b.wingPhase)) * 0.62;
+      const flap = 0.4 + Math.abs(Math.sin(b.wingPhase)) * 0.6;
+      const s = b.size;
       ctx.save();
       ctx.translate(b.x, b.y);
       ctx.rotate(b.tilt);
       ctx.globalAlpha = b.alpha;
 
-      // Left wings
+      // Left & Right detailed wings
       ctx.save();
       ctx.scale(flap, 1);
-      ctx.fillStyle = '#d4a437';
-      ctx.strokeStyle = '#173d2e';
-      ctx.lineWidth = 0.6;
-      ctx.beginPath();
-      ctx.ellipse(-b.size * 0.55, -b.size * 0.25, b.size * 0.62, b.size * 0.42, -0.35, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-      ctx.fillStyle = '#e8c766';
-      ctx.beginPath();
-      ctx.ellipse(-b.size * 0.42, b.size * 0.32, b.size * 0.42, b.size * 0.3, 0.35, 0, Math.PI * 2);
-      ctx.fill();
+      drawDetailedWingHalf(s, -1);
+      drawDetailedWingHalf(s, 1);
       ctx.restore();
 
-      // Right wings
-      ctx.save();
-      ctx.scale(flap, 1);
-      ctx.fillStyle = '#d4a437';
-      ctx.strokeStyle = '#173d2e';
-      ctx.lineWidth = 0.6;
+      // Body & Antennae
+      ctx.fillStyle = '#143324';
       ctx.beginPath();
-      ctx.ellipse(b.size * 0.55, -b.size * 0.25, b.size * 0.62, b.size * 0.42, 0.35, 0, Math.PI * 2);
+      ctx.arc(0, -s * 0.28, s * 0.085, 0, Math.PI * 2);
+      ctx.ellipse(0, s * 0.12, s * 0.075, s * 0.36, 0, 0, Math.PI * 2);
       ctx.fill();
-      ctx.stroke();
-      ctx.fillStyle = '#e8c766';
-      ctx.beginPath();
-      ctx.ellipse(b.size * 0.42, b.size * 0.32, b.size * 0.42, b.size * 0.3, -0.35, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
 
-      // Body
-      ctx.fillStyle = '#173d2e';
       ctx.beginPath();
-      ctx.ellipse(0, 0, b.size * 0.12, b.size * 0.5, 0, 0, Math.PI * 2);
+      ctx.moveTo(-s * 0.03, -s * 0.32);
+      ctx.quadraticCurveTo(-s * 0.18, -s * 0.68, -s * 0.34, -s * 0.72);
+      ctx.moveTo(s * 0.03, -s * 0.32);
+      ctx.quadraticCurveTo(s * 0.18, -s * 0.68, s * 0.34, -s * 0.72);
+      ctx.lineWidth = 0.65;
+      ctx.strokeStyle = '#143324';
+      ctx.stroke();
+
+      ctx.fillStyle = '#e5be53';
+      ctx.beginPath();
+      ctx.arc(-s * 0.34, -s * 0.72, s * 0.045, 0, Math.PI * 2);
+      ctx.arc(s * 0.34, -s * 0.72, s * 0.045, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.restore();
     }
 
     function animateAmbient() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, viewW, viewH);
       const { leftMax, rightMin } = getEdgeBounds();
 
       for (const s of sparkles) {
         s.y += s.vy;
         if (s.y < -10) {
-          s.y = canvas.height + 10;
+          s.y = viewH + 10;
         }
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
@@ -1329,17 +1509,17 @@
         b.x += b.vx;
         b.wingPhase += b.wingSpeed;
 
-        // Strictly bounce inside outer left/right edge gutters so they never enter text area
+        // Strictly stay inside outer side margins, never crossing card text
         if (b.side === 'left') {
-          if (b.x < 12) { b.x = 12; b.vx = Math.abs(b.vx); }
-          if (b.x > leftMax - 8) { b.x = leftMax - 8; b.vx = -Math.abs(b.vx); }
+          if (b.x < 16) { b.x = 16; b.vx = Math.abs(b.vx); }
+          if (b.x > leftMax - 14) { b.x = leftMax - 14; b.vx = -Math.abs(b.vx); }
         } else {
-          if (b.x < rightMin + 8) { b.x = rightMin + 8; b.vx = Math.abs(b.vx); }
-          if (b.x > canvas.width - 12) { b.x = canvas.width - 12; b.vx = -Math.abs(b.vx); }
+          if (b.x < rightMin + 14) { b.x = rightMin + 14; b.vx = Math.abs(b.vx); }
+          if (b.x > viewW - 16) { b.x = viewW - 16; b.vx = -Math.abs(b.vx); }
         }
 
-        if (b.y < -20) {
-          b.y = canvas.height + 20;
+        if (b.y < -30) {
+          b.y = viewH + 30;
         }
 
         drawButterfly(b);
