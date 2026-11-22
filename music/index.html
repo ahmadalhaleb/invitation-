@@ -66,6 +66,19 @@
       z-index: 12;
     }
 
+    /* Hidden YouTube Audio Frame (1x1px off-visual so mobile browsers allow playback) */
+    .yt-audio-container {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 1px;
+      height: 1px;
+      opacity: 0.01;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     /* Floating Music Toggle Button */
     .music-toggle-btn {
       position: fixed;
@@ -771,15 +784,18 @@
 </head>
 <body>
 
-  <!-- Background Wedding Audio (Checks both root folder & subfolder automatically) -->
-  <audio id="wedding-music" loop preload="auto" playsinline>
-    <source src="../music.mp3" type="audio/mpeg">
-    <source src="music.mp3" type="audio/mpeg">
-    <source src="../music.m4a" type="audio/mp4">
-    <source src="music.m4a" type="audio/mp4">
-    <source src="../music.ogg" type="audio/ogg">
-    <source src="music.ogg" type="audio/ogg">
-  </audio>
+  <!-- Embedded YouTube Audio Player (_2b7t0KebVo) -->
+  <div class="yt-audio-container" aria-hidden="true">
+    <iframe
+      id="yt-music-player"
+      width="10"
+      height="10"
+      src="https://www.youtube.com/embed/_2b7t0KebVo?enablejsapi=1&loop=1&playlist=_2b7t0KebVo&controls=0&playsinline=1&rel=0"
+      title="موسيقى الزفاف"
+      frameborder="0"
+      allow="autoplay; encrypted-media">
+    </iframe>
+  </div>
 
   <!-- Floating Sound Toggle Button -->
   <button id="music-toggle" class="music-toggle-btn" type="button" aria-label="تشغيل أو إيقاف الموسيقى">
@@ -1126,18 +1142,25 @@
     </div>
   </div>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    // 1. Envelope Open, Music Playback & Confetti
+    // 1. YouTube IFrame API & Envelope Playback Controller
     const envelopeScreen = document.getElementById('envelope-screen');
     const envelopeTrigger = document.getElementById('envelope-trigger');
     const envelopeHint = document.getElementById('envelope-hint-trigger');
-    const weddingMusic = document.getElementById('wedding-music');
     const musicToggleBtn = document.getElementById('music-toggle');
     const musicIcon = document.getElementById('music-icon');
+    const ytIframe = document.getElementById('yt-music-player');
+
+    let ytPlayer = null;
+    let ytReady = false;
+    let isMusicPlaying = false;
+    let pendingAutoPlay = false;
     let wasPlayingBeforeHide = false;
 
-    function updateMusicUI(isPlaying) {
-      if (isPlaying) {
+    function updateMusicUI(playing) {
+      isMusicPlaying = playing;
+      if (playing) {
         musicIcon.className = 'fa-solid fa-volume-high';
         musicToggleBtn.classList.add('playing');
       } else {
@@ -1146,20 +1169,72 @@
       }
     }
 
+    function sendYTCommand(func, args) {
+      if (ytIframe && ytIframe.contentWindow) {
+        ytIframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: func,
+          args: args || []
+        }), '*');
+      }
+    }
+
+    function startYouTubeMusic() {
+      pendingAutoPlay = true;
+      if (ytReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+        ytPlayer.unMute();
+        ytPlayer.setVolume(85);
+        ytPlayer.playVideo();
+      } else {
+        sendYTCommand('unMute');
+        sendYTCommand('setVolume', [85]);
+        sendYTCommand('playVideo');
+      }
+      updateMusicUI(true);
+    }
+
+    function pauseYouTubeMusic() {
+      pendingAutoPlay = false;
+      if (ytReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+        ytPlayer.pauseVideo();
+      } else {
+        sendYTCommand('pauseVideo');
+      }
+      updateMusicUI(false);
+    }
+
+    window.onYouTubeIframeAPIReady = function () {
+      ytPlayer = new YT.Player('yt-music-player', {
+        events: {
+          onReady: function (event) {
+            ytReady = true;
+            if (pendingAutoPlay) {
+              event.target.unMute();
+              event.target.setVolume(85);
+              event.target.playVideo();
+              updateMusicUI(true);
+            }
+          },
+          onStateChange: function (event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+              updateMusicUI(true);
+            } else if (event.data === YT.PlayerState.PAUSED) {
+              updateMusicUI(false);
+            } else if (event.data === YT.PlayerState.ENDED) {
+              event.target.seekTo(0);
+              event.target.playVideo();
+            }
+          }
+        }
+      });
+    };
+
     function openEnvelope() {
       if (envelopeScreen.classList.contains('opened')) return;
       envelopeScreen.classList.add('opened');
       musicToggleBtn.classList.add('visible');
 
-      weddingMusic.volume = 0.85;
-      const playPromise = weddingMusic.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          updateMusicUI(true);
-        }).catch(() => {
-          updateMusicUI(false);
-        });
-      }
+      startYouTubeMusic();
 
       if (typeof confetti === 'function') {
         confetti({
@@ -1175,23 +1250,21 @@
     envelopeHint.addEventListener('click', openEnvelope);
 
     musicToggleBtn.addEventListener('click', () => {
-      if (weddingMusic.paused) {
-        weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+      if (isMusicPlaying) {
+        pauseYouTubeMusic();
       } else {
-        weddingMusic.pause();
-        updateMusicUI(false);
+        startYouTubeMusic();
       }
     });
 
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
-        wasPlayingBeforeHide = !weddingMusic.paused;
+        wasPlayingBeforeHide = isMusicPlaying;
         if (wasPlayingBeforeHide) {
-          weddingMusic.pause();
-          updateMusicUI(false);
+          pauseYouTubeMusic();
         }
       } else if (wasPlayingBeforeHide) {
-        weddingMusic.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+        startYouTubeMusic();
       }
     });
 
